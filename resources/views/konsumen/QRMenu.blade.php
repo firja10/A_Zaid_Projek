@@ -78,7 +78,7 @@
                 </div>
                   <br>
                   <center>
-                    {!! QrCode::size(256)->generate('https://google.com') !!}
+                    {!! QrCode::size(256)->generate('https://mabeskopi.xyz/konsumen/ShowAllMenu') !!}
                   </center>
                </div>
 
@@ -89,7 +89,7 @@
                 </div>
                   <br>
                   <center>
-                    {!! QrCode::size(256)->generate('https://google.com') !!}
+                    {!! QrCode::size(256)->generate('https://mabeskopi.xyz/konsumen/ShowPromoMenu') !!}
                   </center>
                </div>
 
