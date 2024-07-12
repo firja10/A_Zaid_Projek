@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Daftar Menu Promo</title>
+      <title>Daftar Menu</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -43,11 +43,11 @@
                         <a class="nav-link" href="{{url('/')}}">Home</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="{{url('/login')}}">Login</a>
+                        <a class="nav-link" href="about.html">Tentang Kami</a>
                      </li>
-                     {{-- <li class="nav-item">
+                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/ShowQRMenu')}}">Daftar Menu</a>
-                     </li> --}}
+                     </li>
  
                      <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
@@ -132,7 +132,6 @@
                 
                      </div>
                   </div>
-                  </div>
 
 
                   <div class="carousel-item">
@@ -152,9 +151,7 @@
 
                      </div>
                   </div>
-
                </div>
-
                <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
                <i class="fa fa-arrow-left"></i>
                </a>
