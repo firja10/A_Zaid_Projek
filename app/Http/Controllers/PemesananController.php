@@ -64,22 +64,22 @@ class PemesananController extends Controller
         //
 
 
-        if($request->hasFile('image_produk'))
+        if($request->hasFile('bukti_bayar'))
         {
     
-        $filename = $request['image_produk']->getClientOriginalName();
+        $filename = $request['bukti_bayar']->getClientOriginalName();
         
-        if(Pemesanan::find($id)->image_produk)
+        if(Pemesanan::find($id)->bukti_bayar)
         {
     
-            Storage::delete('/public/storage/Pemesanan/'.Pemesanan::find($id)->image_produk);
+            Storage::delete('/public/storage/Pemesanan/'.Pemesanan::find($id)->bukti_bayar);
     
         }
     
-        $request['image_produk']->storeAs('Produk', $filename, 'public'); }
+        $request['bukti_bayar']->storeAs('Pemesanan', $filename, 'public'); }
     
         else {
-            $filename=Produk::find($id)->image_produk;
+            $filename=Pemesanan::find($id)->image_produk;
         }
 
 

@@ -122,7 +122,19 @@
 
                          <tr>
                             <th>Status Pesanan:</th>
-                            <td><?php echo $pemesanan_id->pembayaran
+                            <td><?php
+                            
+                            if ($pemesanan_id->status_pemesanan == 1) {
+                                # code...
+
+                                echo "<button class ='btn btn-danger' >Belum Bayar</button>";
+
+                            } elseif ($pemesanan_id->status_pemesanan == 2) {
+                                # code...
+                                echo "<button class ='btn btn-success' >Sudah Dibayar</button>";
+                            }
+
+                         
                              ?></td>
                          </tr>
        
@@ -140,7 +152,7 @@
                             echo "Setelah melakukan pembayaran, silakan upload di sini :";
                             ?>
 
-                            <form action="{{route('', $pemesanan_id-)}}" method="POST">
+                            <form action="{{route('konfirmasi_pesanan', $pemesanan_id->id)}}" method="POST">
                                 @csrf
                                 @method('PATCH')
                                 <div class="form-control">
@@ -148,7 +160,7 @@
                                     <input type="file" name="" id="bukti_bayar" class="form-control">
                                  </div>
                                  <br>
-                                 <button type="submit" class="btn btn-success">Konfirmasi Bukti Bayar</button>
+                                 <button type="submit" class="btn btn-primary">Konfirmasi Bukti Bayar</button>
                             </form>
 
 
