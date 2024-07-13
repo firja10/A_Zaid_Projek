@@ -86,7 +86,7 @@
                <form action="{{route('PesanMenu')}}" method="POST">
                   @csrf
                   {{-- <textarea class="form-control" name="list_data_pesanan" id="hiddenInput" cols="30" rows="10"></textarea> --}}
-                  <input type="hidden" name="list_data_pesanan" id="hiddenInput">
+                  {{-- <input type="hidden" name="list_data_pesanan" id="hiddenInput"> --}}
                   <input type="hidden" name="list_data_harga" id="hiddenInputHarga">
                   {{-- <button class="btn btn-danger" type="submit">Masukkan Keranjang</button> --}}
                </form>
@@ -249,7 +249,8 @@
 
 
 
-
+      <form method="POST" action="{{route('PesanMenu') }}">
+         @csrf
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog" role="document">
            <div class="modal-content">
@@ -261,11 +262,21 @@
              </div>
              <div class="modal-body">
             
-               <form>
+ 
+
 
                   <label for="nama_pemesan">Nama Pemesan</label>
-                  <input type="text" name="" id="nama_pemesan" class="form-control">
+                  <input type="text" name="nama_pemesan" id="nama_pemesan" class="form-control">
 
+                  <input type="hidden" name="list_data_pesanan" id="hiddenInput">
+                  <input type="hidden" name="total_harga" id="Total_Harga_Number">
+                  <input type="hidden" name="status_pemesanan" value="1">
+                  <label for="pembayaran">Metode Bayar</label>
+                  <select name="pembayaran" id="pembayaran" class="form-control">
+                     <option value="Mandiri">Bank Mandiri</option>
+                     <option value="BCA">Bank BCA</option>
+                     <option value="BCA">Bank BRI</option>
+                  </select>
 
                  <table class="table" id="tabel_pesanan">
  
@@ -275,20 +286,18 @@
                         <th>Harga Pesanan</th>
                         <tr>
                      </thead>
+
                      <tbody id="nilai_pesanan">
 
                         <tr>
                         <td></td>
                         <td></td>
                         <tr>
-                     
-                        </tbody>
 
-
-
+                     </tbody>
                   <tr>
                      <th>Total Harga:</th>
-                     <td>Rp.</td>
+                     <td id="totalHarga">Rp.</td>
                   </tr>
 
                   </table>
@@ -297,16 +306,18 @@
 
                  
 
-               </form>
+ 
              
             </div>
              <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button type="button" class="btn btn-primary">Send message</button>
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+               <button class="btn btn-primary" type="submit">Kirim Pesanan</button>
              </div>
            </div>
          </div>
        </div>
+
+      </form>
 
 
 
@@ -378,11 +389,26 @@ function addValue(value, textareaId, Hargavalue) {
     var cellProduk = row.insertCell(0);  // Menambahkan sel untuk harga
     var cellHarga = row.insertCell(1);  // Menambahkan sel untuk nama produk
 
+   //  var hargaFormatted = parseInt(hargaArray[i]).toLocaleString();
+
     cellProduk.innerHTML = produk_values[i];  // Mengisi sel harga
-    cellHarga.innerHTML = harga_values[i];  // Mengisi sel nama produk
+    cellHarga.innerHTML = 'Rp. ' + harga_values[i].toLocaleString();  // Mengisi sel nama produk
+   // cellHarga.innerHTML =  hargaFormatted;  // Mengisi sel nama produk
+
   }
 
+  var hargaArrayNumber = harga_values.map(function(harga) {
+    return parseInt(harga.replace('.', '')); // Menghapus titik desimal dan mengonversi ke integer
+  });
 
+    // Menjumlahkan nilai dalam hargaArrayNumber
+    var totalHarga = hargaArrayNumber.reduce(function(total, harga) {
+    return total + harga;
+  }, 0);
+
+  document.getElementById('totalHarga').innerText = 'Total Harga: Rp. ' + totalHarga.toLocaleString();
+
+  document.getElementById('Total_Harga_Number').value = totalHarga;
 
 
 

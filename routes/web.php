@@ -38,7 +38,6 @@ Route::get('konsumen/ShowAllMenu', [KonsumenController::class, 'ShowAllMenu']);
 Route::post('konsumen_pemesanan', [PemesananController::class, 'PesanMenu'])->name('PesanMenu');
 Route::get('konsumen/Konfirmasi_Pemesanan/{id}', [KonsumenController::class, 'Konsumen_ShowKonfirmasiPemesanan'])->name('show_konfirmasi_pemesanan');
 
-
 //Kasir
 Route::get('kasir/home', [HomeController::class, 'kasirHome'])->name('kasir.home')->middleware('is_kasir');
 Route::get('kasir/ShowPemesanan', [KasirController::class, 'Kasir_ShowPemesanan'])->name('kasir.show_pemesanan')->middleware('is_kasir');

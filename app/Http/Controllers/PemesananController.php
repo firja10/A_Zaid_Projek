@@ -22,8 +22,9 @@ class PemesananController extends Controller
         //
 
         $pemesanan = new Pemesanan();
+
         $pemesanan['list_data_pesanan'] = $request->list_data_pesanan;
-        $pemesanan['kode_pesanan'] = $request->kode_pesanan;
+        // $pemesanan['kode_pesanan'] = $request->kode_pesanan;
         $pemesanan['nama_kasir'] = $request->nama_kasir;
         $pemesanan['total_harga'] = $request->total_harga;
         $pemesanan['pembayaran'] = $request->pembayaran;
@@ -35,8 +36,21 @@ class PemesananController extends Controller
         $pemesanan['id_barista'] = $request->id_barista;
         $pemesanan['nama_barista'] = $request->nama_barista;
 
+        
+
         $pemesanan->save();
-        return redirect('/konsumen/ShowQRMenu')->with('tambah_produk','Produk Berhasil Ditambahkan');
+
+        $id_pesan = $pemesanan['id'];
+        $kode_pesanan = 'MA - ' + $id_pesan;
+
+        Pemesanan::where('id', $id_pesan)->update([
+
+            'kode_pesanan'=>$kode_pesanan
+
+        ]);
+
+
+        return redirect('/konsumen/Konfirmasi_Pemesanan/'. $id_pesan)->with('tambah_produk','Produk Berhasil Ditambahkan');
 
 
     }
