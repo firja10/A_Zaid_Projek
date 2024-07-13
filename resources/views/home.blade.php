@@ -74,7 +74,7 @@
 
                <div class="col-md-6">
                 <div class="text-center">
-                    <h1 class="contact_taital">Daftar Menu Promo</h1>
+                    <h1 class="contact_taital">Daftar Semua Menu</h1>
                 </div>
                   <br>
                   <center>
@@ -85,7 +85,7 @@
 
                <div class="col-md-6">
                 <div class="text-center">
-                    <h1 class="contact_taital">Daftar Semua Menu</h1>
+                    <h1 class="contact_taital">Daftar Menu Promo</h1>
                 </div>
                   <br>
                   <center>
