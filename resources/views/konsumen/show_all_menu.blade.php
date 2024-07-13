@@ -266,17 +266,19 @@
 
 
                   <label for="nama_pemesan">Nama Pemesan</label>
-                  <input type="text" name="nama_pemesan" id="nama_pemesan" class="form-control">
+                  <input type="text" name="nama_konsumen" id="nama_konsumen" class="form-control">
 
                   <input type="hidden" name="list_data_pesanan" id="hiddenInput">
                   <input type="hidden" name="total_harga" id="Total_Harga_Number">
                   <input type="hidden" name="status_pemesanan" value="1">
-                  <label for="pembayaran">Metode Bayar</label>
-                  <select name="pembayaran" id="pembayaran" class="form-control">
-                     <option value="Mandiri">Bank Mandiri</option>
+                  <label for="pembayaran">Metode Bayar</label> <br>
+                  <select name="pembayaran" id="pembayaran" style="width:100%" class="form-control">
+
+                     <option value="Cash">Cash</option>
                      <option value="BCA">Bank BCA</option>
-                     <option value="BCA">Bank BRI</option>
+                  
                   </select>
+                  <br> <br>
 
                  <table class="table" id="tabel_pesanan">
  

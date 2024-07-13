@@ -73,13 +73,22 @@
             <div class="row">
 
                <div class="col-md-12">
+
+                  @if ($message = Session::get('success'))
+                  <div class="alert alert-info alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>	
+                   <strong>{{ $message }}</strong>
+                  </div>
+                @endif
+
+
                 <div class="text-center">
-                    <h1 class="contact_taital">Daftar Menu Promo</h1>
+                    <h1 class="contact_taital">INVOICE KODE PESANAN {{$pemesanan_id->kode_pesanan}}</h1>
                 </div>
                   <br>
                   <center>
 
-                    <form action="">
+                    {{-- <form action=""> --}}
 
 
                         <table class="table" id="tabel_pesanan">
@@ -131,8 +140,19 @@
 
                             } elseif ($pemesanan_id->status_pemesanan == 2) {
                                 # code...
-                                echo "<button class ='btn btn-success' >Sudah Dibayar</button>";
+                                $actual_link = "https://$_SERVER[HTTP_HOST]";
+
+                                echo "<button class ='btn btn-warning' >Sudah Dibayar</button>";
+                                echo "</br></br>";
+                                echo "<h4>Bukti Bayar : </h4>";
+                                echo "<img style='width:100px' src='/storage/Pemesanan/".$pemesanan_id->bukti_bayar."' alt=''>";
+                              //   echo $actual_link;
+
+                            }elseif ($pemesanan_id->status_pemesanan == 3) {
+                                # code...
+                                echo "<button class ='btn btn-success' >Sudah Lunas</button>";
                             }
+
 
                          
                              ?></td>
@@ -152,15 +172,22 @@
                             echo "Setelah melakukan pembayaran, silakan upload di sini :";
                             ?>
 
-                            <form action="{{route('konfirmasi_pesanan', $pemesanan_id->id)}}" method="POST">
+                            <form action="{{route('KonfirmasiPesanan', $pemesanan_id->id)}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PATCH')
+
                                 <div class="form-control">
                                     <label for="bukti_bayar">Bukti Pembayaran</label>
-                                    <input type="file" name="" id="bukti_bayar" class="form-control">
+                                    <input type="file" name="bukti_bayar" id="bukti_bayar">
                                  </div>
                                  <br>
+                                 <?php if($pemesanan_id->status_pemesanan == 1) {?>
                                  <button type="submit" class="btn btn-primary">Konfirmasi Bukti Bayar</button>
+                                 <?php } else {?>
+                                    <button type="submit" class="btn btn-primary" disabled>Konfirmasi Bukti Bayar</button>
+                                    
+                                 <?php  }?>
+                                 
                             </form>
 
 
@@ -174,11 +201,12 @@
                         </h5>
 
 
+                    {{-- </form> --}}
 
 
 
 
-                    </form>
+
                   </center>
                </div>
 

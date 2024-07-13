@@ -21,7 +21,7 @@ class KasirController extends Controller
 
         $pemesanan = Pemesanan::all();
 
-        return view('kasir.daftar_pesanan');
+        return view('kasir.daftar_pesanan', compact('pemesanan'));
 
     }
 

@@ -85,18 +85,19 @@ class PemesananController extends Controller
 
 
 
-        Pemesanan::where('id', $id)->update([
+        $pemesanans = Pemesanan::where('id', $id)->update([
 
             'status_pemesanan' => 2,
+            'bukti_bayar'=>$filename,
   
 
         ]);
 
 
-        
+    
+        return redirect('/konsumen/Konfirmasi_Pemesanan/'.$id)->with(['success' => 'Silakan Menunggu Konfirmasi Terlebih dahulu']);
 
-
-        return redirect('/konsumen/Konfirmasi_Pemesanan/'.$id);
+        // return redirect('/konsumen/ShowAllMenu')->with(['success' => 'Silakan Menunggu Konfirmasi Terlebih dahulu']);
 
 
     }
