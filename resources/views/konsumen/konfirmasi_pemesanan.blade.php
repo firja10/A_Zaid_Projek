@@ -82,18 +82,81 @@
                     <form action="">
 
 
-                        <table class="table">
-                        <tr>
-                            <th>Nama Pemesan</th>
-                            <td>List Data Pesanan</td>
-                        </tr>
-                        <tr>
-                            <th>List Data Pesanan</th>
-                            <td>List Data Pesanan</td>
-                            <td>Harga</td>
-                        </tr>
+                        <table class="table" id="tabel_pesanan">
+ 
+                            <thead>
+                               <tr>
+                               <th>Data Pesanan</th>
+                               <th>Harga Pesanan</th>
+                               <tr>
+                            </thead>
+       
+                            <?php 
+                            
+                            $pesanan_list = explode(';', $pemesanan_id->list_data_pesanan);
+                            
 
-                        </table>
+                            ?>
+
+                            <tbody id="nilai_pesanan">
+                                <?php foreach ($pesanan_list as $value) {
+                                    # code...
+                                
+                                    $pesanan_harga = DB::table('produks')->where('nama_produk', $value)->first();
+                                ?>
+                               <tr>
+                               <td><?php echo $value  ?></td>
+                               <td><?php echo 'Rp. '. number_format($pesanan_harga->harga_produk, 2, ",", ".")  ?></td>
+                               <tr>
+                                <?php  } ?>
+                            </tbody>
+                         <tr>
+                            <th>Total Harga:</th>
+                            <td id="totalHarga">Rp. <?php echo number_format($pemesanan_id->total_harga, 2, ",", ".") ?></td>
+                         </tr>
+                         <tr>
+                            <th>Metode Pembayaran:</th>
+                            <td><?php echo $pemesanan_id->pembayaran
+                             ?></td>
+                         </tr>
+
+                         <tr>
+                            <th>Status Pesanan:</th>
+                            <td><?php echo $pemesanan_id->pembayaran
+                             ?></td>
+                         </tr>
+       
+                         </table>
+
+
+                         <h5><?php
+                         
+                         if ($pemesanan_id->pembayaran == 'BCA') {
+                            # code...
+                            echo "Silakan lakukan Pembayaran dengan Transfer atas nama berikut : ";
+                            echo "</br>";
+                            echo "787798878 a.n Zaid Ishmatul";
+                            echo "</br>";
+                            echo "Setelah melakukan pembayaran, silakan upload di sini :";
+                            ?>
+                         <div class="form-control">
+                            <label for="bukti_bayar">Bukti Pembayaran</label>
+                            <input type="file" name="" id="bukti_bayar" class="form-control">
+                         </div>
+                         <button type="submit">Konfirmasi Bukti Bayar</button>
+
+
+                       <?php  }
+
+                         elseif($pemesanan_id->pembayaran == 'Cash') {
+                            echo "Silakan lakukan Pembayaran di Kasir ";
+                         } ?>
+                    
+                        </h5>
+
+
+
+
 
 
                     </form>

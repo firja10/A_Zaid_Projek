@@ -41,7 +41,7 @@ class PemesananController extends Controller
         $pemesanan->save();
 
         $id_pesan = $pemesanan['id'];
-        $kode_pesanan = 'MA - ' + $id_pesan;
+        $kode_pesanan = 'MA - ' . strval($id_pesan);
 
         Pemesanan::where('id', $id_pesan)->update([
 

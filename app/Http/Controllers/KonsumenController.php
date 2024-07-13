@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Konsumen;
+use App\Models\Pemesanan;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,9 +27,16 @@ class KonsumenController extends Controller
         return view('konsumen.show_all_menu', compact('produk'));
     }
 
-    function Konsumen_ShowKonfirmasiPemesanan($id) {
+   public function Konsumen_ShowKonfirmasiPemesanan($id) {
         
         
+
+        $pemesanan_id = Pemesanan::findOrFail($id);
+
+        
+
+        return view('konsumen.konfirmasi_pemesanan', compact('pemesanan_id'));
+
 
 
     }
