@@ -22,8 +22,7 @@ class PemesananController extends Controller
         //
 
         $pemesanan = new Pemesanan();
-        $pemesanan['list_data_pesanan'] = $request->nama_produk;
-    
+        $pemesanan['list_data_pesanan'] = $request->list_data_pesanan;
         $pemesanan['kode_pesanan'] = $request->kode_pesanan;
         $pemesanan['nama_kasir'] = $request->nama_kasir;
         $pemesanan['total_harga'] = $request->total_harga;
@@ -37,10 +36,41 @@ class PemesananController extends Controller
         $pemesanan['nama_barista'] = $request->nama_barista;
 
         $pemesanan->save();
-        return redirect('/owner/stok_produk/')->with('tambah_produk','Produk Berhasil Ditambahkan');
+        return redirect('/konsumen/ShowQRMenu')->with('tambah_produk','Produk Berhasil Ditambahkan');
 
 
     }
+
+
+
+
+    public function KonfirmasiPesanan($id, Request $request)
+    {
+        //
+
+        Pemesanan::where('id', $id)->update([
+
+            'list_data_pesanan' => $request['list_data_pesanan'],
+            'kode_pesanan' => $request['kode_pesanan'],
+            'nama_kasir' => $request['nama_kasir'],
+            'total_harga' => $request['total_harga'],
+            'pembayaran' => $request['pembayaran'],
+            'status_pemesanan' => $request['status_pemesanan'],
+            'id_produk' => $request['id_produk'],
+            'id_konsumen' => $request['id_konsumen'],
+            'nama_konsumen' => $request['nama_konsumen'],
+            'id_kasir' => $request['id_kasir'],
+            'id_barista' => $request['id_barista'],
+            'nama_barista' => $request['nama_barista'],
+
+        ]);
+
+        return redirect('/');
+
+
+    }
+
+
 
 
 

@@ -2,9 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KasirController;
 use App\Http\Controllers\KonsumenController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ProdukController;
+use App\Models\Pemesanan;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -32,10 +35,14 @@ Route::get('konsumen/home', [HomeController::class, 'konsumenHome'])->name('kons
 Route::get('konsumen/ShowQRMenu', [ProdukController::class, 'ShowQRMenu']);
 Route::get('konsumen/ShowPromoMenu', [KonsumenController::class, 'ShowPromoMenu']);
 Route::get('konsumen/ShowAllMenu', [KonsumenController::class, 'ShowAllMenu']);
+Route::post('konsumen_pemesanan', [PemesananController::class, 'PesanMenu'])->name('PesanMenu');
 
 
 //Kasir
 Route::get('kasir/home', [HomeController::class, 'kasirHome'])->name('kasir.home')->middleware('is_kasir');
+Route::get('kasir/ShowPemesanan', [KasirController::class, 'Kasir_ShowPemesanan'])->name('kasir.show_pemesanan')->middleware('is_kasir');
+
+
 
 //Barista
 Route::get('barista/home', [HomeController::class, 'baristaHome'])->name('barista.home')->middleware('is_barista');

@@ -26,6 +26,10 @@ class KonsumenController extends Controller
         return view('konsumen.show_all_menu', compact('produk'));
     }
 
+    function Konsumen_ShowKonfirmasiPemesanan($id) {
+        
+    }
+
 
     
 

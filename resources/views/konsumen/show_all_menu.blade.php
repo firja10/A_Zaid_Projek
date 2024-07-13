@@ -82,7 +82,16 @@
 
             <br>
             <center>
-               <button class="btn btn-danger">Masukkan Keranjang</button>
+
+               <form action="{{route('PesanMenu')}}" method="POST">
+                  @csrf
+                  {{-- <textarea class="form-control" name="list_data_pesanan" id="hiddenInput" cols="30" rows="10"></textarea> --}}
+                  <input type="hidden" name="list_data_pesanan" id="hiddenInput">
+                  <button class="btn btn-danger" type="submit">Masukkan Keranjang</button>
+               </form>
+
+               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+
             </center>
 
          </div>
@@ -100,7 +109,8 @@
                               <div class="coffee_img"><img src="{{asset('storage/Produk/'. $produks->image_produk)}}"></div>
                               <h3 class="types_text">{{$produks->nama_produk}}</h3>
                               <p class="looking_text">{{$produks->kategori_produk}} - {{$produks->harga_produk}}</p>
-                              <div class="read_bt"><a href="#">Pesan</a></div>
+                              <div class="read_bt"></div>
+                              <center><button class="btn btn-success" onclick="addValue('<?php echo $produks->nama_produk ?>')">Pesan</button></center>
                            </div>
                            @endforeach
 
@@ -112,7 +122,7 @@
                   </div>
 
                   
-                  <div class="carousel-item">
+                  {{-- <div class="carousel-item">
                      <div class="container-fluid">
                         <div class="row">
 
@@ -124,7 +134,8 @@
                               <div class="coffee_img" ><img src="{{asset('storage/Produk/'. $produks->image_produk)}}"></div>
                               <h3 class="types_text">{{$produks->nama_produk}}</h3>
                               <p class="looking_text">{{$produks->kategori_produk}} - {{$produks->harga_produk}}</p>
-                              <div class="read_bt"><a href="#">Pesan</a></div>
+                              <div class="read_bt"></div>
+                              <center><button class="btn btn-success" onclick="addValue('')">Pesan</button></center>
                            </div>
                            
                                
@@ -132,10 +143,10 @@
                 
                      </div>
                   </div>
-                  </div>
+                  </div> --}}
 
 
-                  <div class="carousel-item">
+                  {{-- <div class="carousel-item">
                      <div class="container-fluid">
                         <div class="row">
                  
@@ -144,7 +155,8 @@
                               <div class="coffee_img" ><img src="{{asset('storage/Produk/'. $produks->image_produk)}}"></div>
                               <h3 class="types_text">{{$produks->nama_produk}}</h3>
                               <p class="looking_text">{{$produks->kategori_produk}} - {{$produks->harga_produk}}</p>
-                              <div class="read_bt"><a href="#">Pesan</a></div>
+                              <div class="read_bt"></div>
+                              <center><button class="btn btn-success">Pesan</button></center>
                            </div>
                                
                            @endforeach
@@ -153,7 +165,7 @@
                      </div>
                   </div>
 
-               </div>
+               </div> --}}
 
                <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
                <i class="fa fa-arrow-left"></i>
@@ -226,6 +238,59 @@
       </div>
       <!-- copyright section end -->
       <!-- Javascript files-->
+
+
+
+
+
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+               <form>
+                 <div class="form-group">
+                   <label for="recipient-name" class="col-form-label">Recipient:</label>
+                   <input type="text" class="form-control" id="recipient-name">
+                 </div>
+                 <div class="form-group">
+                   <label for="message-text" class="col-form-label">Message:</label>
+                   <textarea class="form-control" id="message-text"></textarea>
+                 </div>
+               </form>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="button" class="btn btn-primary">Send message</button>
+             </div>
+           </div>
+         </div>
+       </div>
+
+
+
+      <script>
+         function addValue(value) {
+
+
+            var hiddenInput = document.getElementById("hiddenInput");
+            var currentValue = hiddenInput.value;
+
+            if (currentValue) {
+                hiddenInput.value = currentValue + ";" + value;
+            } else {
+                hiddenInput.value = value;
+            }
+         }
+      </script>
+
+
       <script src="{{asset('js/jquery.min.js')}}"></script>
       <script src="{{asset('js/popper.min.js')}}"></script>
       <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>

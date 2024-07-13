@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Daftar Menu Promo</title>
+      <title>Daftar Menu</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -43,11 +43,11 @@
                         <a class="nav-link" href="{{url('/')}}">Home</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="{{url('/login')}}">Login</a>
+                        <a class="nav-link" href="about.html">Tentang Kami</a>
                      </li>
-                     {{-- <li class="nav-item">
+                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/ShowQRMenu')}}">Daftar Menu</a>
-                     </li> --}}
+                     </li>
  
                      <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
@@ -68,114 +68,56 @@
       </div>
       <!-- header section end -->
       <!-- contact section start -->
-
-
-
-
-                     <!-- coffee section start -->
-      <div class="coffee_section layout_padding">
+      <div class="contact_section layout_padding">
          <div class="container">
             <div class="row">
-               <h1 class="coffee_taital">OUR Coffee OFFER</h1>
-               <div class="bulit_icon"><img src="{{asset('images/bulit-icon.png')}}"></div>
-            </div>
 
-            <br>
-            <center>
-               <button class="btn btn-danger">Masukkan Keranjang</button>
-            </center>
+               <div class="col-md-12">
+                <div class="text-center">
+                    <h1 class="contact_taital">Daftar Menu Promo</h1>
+                </div>
+                  <br>
+                  <center>
 
-         </div>
-         <div class="coffee_section_2">
-            <div id="main_slider" class="carousel slide" data-ride="carousel">
-               <div class="carousel-inner">
-
-                  <div class="carousel-item active">
-                     <div class="container-fluid">
-                        <div class="row">
+                    <form action="">
 
 
-                           @foreach ($produk as $produks)
-                           <div class="col-lg-3 col-md-6">
-                              <div class="coffee_img"><img src="{{asset('storage/Produk/'. $produks->image_produk)}}"></div>
-                              <h3 class="types_text">{{$produks->nama_produk}}</h3>
-                              <p class="looking_text">{{$produks->kategori_produk}} - {{$produks->harga_produk}}</p>
-                              <div class="read_bt"><button class="btn btn-success">Pesan</button></div>
-                           </div>
-                           @endforeach
+                        <table class="table">
+                        <tr>
+                            <th>Nama Pemesan</th>
+                            <td>List Data Pesanan</td>
+                        </tr>
+                        <tr>
+                            <th>List Data Pesanan</th>
+                            <td>List Data Pesanan</td>
+                            <td>Harga</td>
+                        </tr>
+
+                        </table>
 
 
-
-
-                        </div>
-                     </div>
-                  </div>
-
-                  
-                  <div class="carousel-item">
-                     <div class="container-fluid">
-                        <div class="row">
-
-
-
-
-                           @foreach ($produk as $produks)
-                           <div class="col-lg-3 col-md-6">
-                              <div class="coffee_img" ><img src="{{asset('storage/Produk/'. $produks->image_produk)}}"></div>
-                              <h3 class="types_text">{{$produks->nama_produk}}</h3>
-                              <p class="looking_text">{{$produks->kategori_produk}} - {{$produks->harga_produk}}</p>
-                              <div class="read_bt"><button class="btn btn-success">Pesan</button></div>
-                           </div>
-                           
-                               
-                           @endforeach
-                
-                     </div>
-                  </div>
-                  </div>
-
-
-                  <div class="carousel-item">
-                     <div class="container-fluid">
-                        <div class="row">
-                 
-                           @foreach ($produk as $produks)
-                           <div class="col-lg-3 col-md-6">
-                              <div class="coffee_img" ><img src="{{asset('storage/Produk/'. $produks->image_produk)}}"></div>
-                              <h3 class="types_text">{{$produks->nama_produk}}</h3>
-                              <p class="looking_text">{{$produks->kategori_produk}} - {{$produks->harga_produk}}</p>
-                              <div class="read_bt"><button class="btn btn-success">Pesan</button></div>
-                           </div>
-                               
-                           @endforeach
-
-
-                     </div>
-                  </div>
-
+                    </form>
+                  </center>
                </div>
 
-               <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-               <i class="fa fa-arrow-left"></i>
-               </a>
-               <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-               <i class="fa fa-arrow-right"></i>
-               </a>
+
+
+
+
+
             </div>
          </div>
+
+         <br>
+
+
+
+
+
       </div>
-      <!-- coffee section end -->
-
-
-
-<br><br>
-
-
-
-
       <!-- contact section end -->
       <!-- footer section start -->
-      <div class="footer_section layout_padding mt-5">
+      <div class="footer_section layout_padding">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
@@ -226,14 +168,6 @@
       </div>
       <!-- copyright section end -->
       <!-- Javascript files-->
-
-      <script>
-         function addValue(params) {
-
-
-            
-         }
-      </script>
       <script src="{{asset('js/jquery.min.js')}}"></script>
       <script src="{{asset('js/popper.min.js')}}"></script>
       <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
