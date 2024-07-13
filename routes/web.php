@@ -36,6 +36,7 @@ Route::get('konsumen/ShowQRMenu', [ProdukController::class, 'ShowQRMenu']);
 Route::get('konsumen/ShowPromoMenu', [KonsumenController::class, 'ShowPromoMenu']);
 Route::get('konsumen/ShowAllMenu', [KonsumenController::class, 'ShowAllMenu']);
 Route::post('konsumen_pemesanan', [PemesananController::class, 'PesanMenu'])->name('PesanMenu');
+Route::get('konsumen/Konfirmasi_Pemesanan/{id}', [KonsumenController::class, 'Konsumen_ShowKonfirmasiPemesanan'])->name('show_konfirmasi_pemesanan');
 
 
 //Kasir

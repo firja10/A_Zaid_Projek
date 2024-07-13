@@ -87,10 +87,11 @@
                   @csrf
                   {{-- <textarea class="form-control" name="list_data_pesanan" id="hiddenInput" cols="30" rows="10"></textarea> --}}
                   <input type="hidden" name="list_data_pesanan" id="hiddenInput">
-                  <button class="btn btn-danger" type="submit">Masukkan Keranjang</button>
+                  <input type="hidden" name="list_data_harga" id="hiddenInputHarga">
+                  {{-- <button class="btn btn-danger" type="submit">Masukkan Keranjang</button> --}}
                </form>
 
-               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pesanan</button>
 
             </center>
 
@@ -110,7 +111,12 @@
                               <h3 class="types_text">{{$produks->nama_produk}}</h3>
                               <p class="looking_text">{{$produks->kategori_produk}} - {{$produks->harga_produk}}</p>
                               <div class="read_bt"></div>
-                              <center><button class="btn btn-success" onclick="addValue('<?php echo $produks->nama_produk ?>')">Pesan</button></center>
+                              <center><button class="btn btn-success" onclick="addValue('<?php echo $produks->nama_produk ?>','textarea<?php echo $produks->id ?>', '<?php echo $produks->harga_produk ?>')">Pesan</button></center>
+                              {{-- <p id="textareaId"></p> --}}
+                              <p id="textarea{{$produks->id}}"></p>
+                          
+
+
                            </div>
                            @endforeach
 
@@ -248,23 +254,52 @@
          <div class="modal-dialog" role="document">
            <div class="modal-content">
              <div class="modal-header">
-               <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+               <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Pemesanan</h5>
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                  <span aria-hidden="true">&times;</span>
                </button>
              </div>
              <div class="modal-body">
+            
                <form>
-                 <div class="form-group">
-                   <label for="recipient-name" class="col-form-label">Recipient:</label>
-                   <input type="text" class="form-control" id="recipient-name">
-                 </div>
-                 <div class="form-group">
-                   <label for="message-text" class="col-form-label">Message:</label>
-                   <textarea class="form-control" id="message-text"></textarea>
-                 </div>
+
+                  <label for="nama_pemesan">Nama Pemesan</label>
+                  <input type="text" name="" id="nama_pemesan" class="form-control">
+
+
+                 <table class="table" id="tabel_pesanan">
+ 
+                     <thead>
+                        <tr>
+                        <th>Data Pesanan</th>
+                        <th>Harga Pesanan</th>
+                        <tr>
+                     </thead>
+                     <tbody id="nilai_pesanan">
+
+                        <tr>
+                        <td></td>
+                        <td></td>
+                        <tr>
+                     
+                        </tbody>
+
+
+
+                  <tr>
+                     <th>Total Harga:</th>
+                     <td>Rp.</td>
+                  </tr>
+
+                  </table>
+
+
+
+                 
+
                </form>
-             </div>
+             
+            </div>
              <div class="modal-footer">
                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                <button type="button" class="btn btn-primary">Send message</button>
@@ -276,18 +311,101 @@
 
 
       <script>
-         function addValue(value) {
+         // function addValue(value) {
 
 
-            var hiddenInput = document.getElementById("hiddenInput");
-            var currentValue = hiddenInput.value;
+         //    var hiddenInput = document.getElementById("hiddenInput");
+         //    var currentValue = hiddenInput.value;
 
-            if (currentValue) {
-                hiddenInput.value = currentValue + ";" + value;
-            } else {
-                hiddenInput.value = value;
-            }
-         }
+         //    if (currentValue) {
+         //        hiddenInput.value = currentValue + ";" + value;
+         //    } else {
+         //        hiddenInput.value = value;
+         //    }
+         // }
+
+
+var counts = {};
+
+function addValue(value, textareaId, Hargavalue) {
+  var hiddenInput = document.getElementById('hiddenInput');
+  var hiddenInputHarga = document.getElementById('hiddenInputHarga');
+  var textarea = document.getElementById(textareaId);
+
+  // Initialize count if not exists
+  if (!counts[value]) {
+    counts[value] = 0;
+  }
+
+  // Update the count
+  counts[value] += 1;
+
+  // Update the hidden input value
+  if (hiddenInput.value) {
+    hiddenInput.value += ';' + value;
+  } else {
+    hiddenInput.value = value;
+  }
+
+  if (hiddenInputHarga.value) {
+    hiddenInputHarga.value += ';' + Hargavalue;
+  } else {
+    hiddenInputHarga.value = Hargavalue;
+  }
+
+
+  // Update the corresponding textarea with the count
+  textarea.value = counts[value];
+  textarea.innerHTML = "Pemesanan : " + counts[value];
+  console.log(textarea.value);
+
+  var produk_values = hiddenInput.value.split(';');
+  var harga_values = hiddenInputHarga.value.split(';');
+  console.log(produk_values);
+
+  var nilai_pesanan = document.getElementById('nilai_pesanan');
+
+  nilai_pesanan.innerHTML='';
+
+
+
+  var table = document.getElementById('tabel_pesanan').getElementsByTagName('tbody')[0];
+
+  // Mengisi nilai td berdasarkan data array
+  for (var i = 0; i < produk_values.length; i++) {
+    var row = table.insertRow();  // Membuat baris baru
+
+    var cellProduk = row.insertCell(0);  // Menambahkan sel untuk harga
+    var cellHarga = row.insertCell(1);  // Menambahkan sel untuk nama produk
+
+    cellProduk.innerHTML = produk_values[i];  // Mengisi sel harga
+    cellHarga.innerHTML = harga_values[i];  // Mengisi sel nama produk
+  }
+
+
+
+
+
+
+//   values.forEach(function(value, index) {
+//        var tr = document.createElement('tr');
+//         var td_1 = document.createElement('td');
+//         td_1.id = "td_produk_" + index;
+//         td_1.textContent = value;
+//         tr.appendChild(td_1);
+//         nilai_pesanan.appendChild(tr);
+//       });
+
+
+
+
+   
+
+
+
+}
+
+
       </script>
 
 

@@ -65,7 +65,11 @@ class PemesananController extends Controller
 
         ]);
 
-        return redirect('/');
+
+        
+
+
+        return redirect('/konsumen/Konfirmasi_Pemesanan/'.$id);
 
 
     }
