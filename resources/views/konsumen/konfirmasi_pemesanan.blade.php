@@ -139,11 +139,18 @@
                             echo "</br>";
                             echo "Setelah melakukan pembayaran, silakan upload di sini :";
                             ?>
-                         <div class="form-control">
-                            <label for="bukti_bayar">Bukti Pembayaran</label>
-                            <input type="file" name="" id="bukti_bayar" class="form-control">
-                         </div>
-                         <button type="submit">Konfirmasi Bukti Bayar</button>
+
+                            <form action="{{route('', $pemesanan_id-)}}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <div class="form-control">
+                                    <label for="bukti_bayar">Bukti Pembayaran</label>
+                                    <input type="file" name="" id="bukti_bayar" class="form-control">
+                                 </div>
+                                 <br>
+                                 <button type="submit" class="btn btn-success">Konfirmasi Bukti Bayar</button>
+                            </form>
+
 
 
                        <?php  }

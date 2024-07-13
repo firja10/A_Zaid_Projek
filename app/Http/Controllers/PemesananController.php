@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pemesanan;
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PemesananController extends Controller
 {
@@ -36,7 +37,7 @@ class PemesananController extends Controller
         $pemesanan['id_barista'] = $request->id_barista;
         $pemesanan['nama_barista'] = $request->nama_barista;
 
-        
+    
 
         $pemesanan->save();
 
@@ -62,20 +63,32 @@ class PemesananController extends Controller
     {
         //
 
+
+        if($request->hasFile('image_produk'))
+        {
+    
+        $filename = $request['image_produk']->getClientOriginalName();
+        
+        if(Pemesanan::find($id)->image_produk)
+        {
+    
+            Storage::delete('/public/storage/Pemesanan/'.Pemesanan::find($id)->image_produk);
+    
+        }
+    
+        $request['image_produk']->storeAs('Produk', $filename, 'public'); }
+    
+        else {
+            $filename=Produk::find($id)->image_produk;
+        }
+
+
+
+
         Pemesanan::where('id', $id)->update([
 
-            'list_data_pesanan' => $request['list_data_pesanan'],
-            'kode_pesanan' => $request['kode_pesanan'],
-            'nama_kasir' => $request['nama_kasir'],
-            'total_harga' => $request['total_harga'],
-            'pembayaran' => $request['pembayaran'],
-            'status_pemesanan' => $request['status_pemesanan'],
-            'id_produk' => $request['id_produk'],
-            'id_konsumen' => $request['id_konsumen'],
-            'nama_konsumen' => $request['nama_konsumen'],
-            'id_kasir' => $request['id_kasir'],
-            'id_barista' => $request['id_barista'],
-            'nama_barista' => $request['nama_barista'],
+            'status_pemesanan' => 2,
+  
 
         ]);
 
