@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kasir;
 use App\Models\Pemesanan;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,13 +39,25 @@ class KasirController extends Controller
     public function Kasir_KonfirmasiPembayaran($id, Request $request){
 
 
+        
         Pemesanan::where('id', $id)->update([
-            'status_pemesanan'=>2
+            'status_pemesanan'=>3,
+            'nama_barista'=>$request['nama_barista'],
+            'nama_kasir'=>$request['nama_kasir'],
             
         ]);
 
+        return redirect('kasir/ShowPemesanan')->with(['sukses_konfirmasi_bayar'=>'Pembayaran telah dikonfirmasi']);
+
     }
 
+
+
+    public function Kasir_StokProduk() 
+    {
+        $produk = Produk::all();
+        return view('kasir.stok_produk', compact('produk'));
+    }
 
 
     

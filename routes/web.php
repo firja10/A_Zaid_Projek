@@ -43,7 +43,8 @@ Route::patch('konsumen/Konfirmasi_Pemesanan_id/{id}', [PemesananController::clas
 //Kasir
 Route::get('kasir/home', [HomeController::class, 'kasirHome'])->name('kasir.home')->middleware('is_kasir');
 Route::get('kasir/ShowPemesanan', [KasirController::class, 'Kasir_ShowPemesanan'])->name('kasir.show_pemesanan')->middleware('is_kasir');
-
+Route::patch('kasir/Kasir_KonfirmasiPembayaran/{id}', [KasirController::class, 'Kasir_KonfirmasiPembayaran'])->name('kasir.konfirmasi_pemesanan')->middleware('is_kasir');
+Route::get('kasir/stok_produk', [KasirController::class, 'Kasir_StokProduk'])->name('Kasir_StokProduk')->middleware('is_kasir');
 
 
 //Barista
