@@ -85,7 +85,8 @@
 
                <form action="{{route('PesanMenu')}}" method="POST">
                   @csrf
-                  <textarea class="form-control" name="list_data_pesanan" id="hiddenInput" cols="30" rows="10"></textarea>
+                  {{-- <textarea class="form-control" name="list_data_pesanan" id="hiddenInput" cols="30" rows="10"></textarea> --}}
+                  {{-- <textarea class="form-control" name="list_data_harga" id="hiddenInputHarga" cols="30" rows="10"></textarea> --}}
                   {{-- <input type="hidden" name="list_data_pesanan" id="hiddenInput"> --}}
                   <input type="hidden" name="list_data_harga" id="hiddenInputHarga">
                   {{-- <button class="btn btn-danger" type="submit">Masukkan Keranjang</button> --}}
@@ -112,9 +113,9 @@
                               <p class="looking_text">{{$produks->kategori_produk}} - {{$produks->harga_produk}}</p>
                               {{-- <div class="read_bt"></div> --}}
                               <p>{{$produks->deskripsi_produk}}</p>
-                              <center><button class="btn btn-success" onclick="addValue('<?php echo $produks->nama_produk ?>','textarea<?php echo $produks->id ?>', '<?php echo $produks->harga_produk ?>')">Pesan</button></center>
+                              <center><button class="btn btn-success" onclick="addValue('<?php echo $produks->nama_produk ?>','textarea<?php echo $produks->id ?>', '<?php echo $produks->harga_produk ?>', 'button<?php echo $produks->id ?>')">Pesan</button></center>
                                <br>
-                              <center><button class="btn btn-danger" onclick="removeValue('<?php echo $produks->nama_produk ?>','textarea<?php echo $produks->id ?>', '<?php echo $produks->harga_produk ?>')">Hapus Pesanan</button></center>
+                              <center><button disabled class="btn btn-danger" id="button<?php echo $produks->id ?>" onclick="removeValue('<?php echo $produks->nama_produk ?>','textarea<?php echo $produks->id ?>', '<?php echo $produks->harga_produk ?>', 'button<?php echo $produks->id ?>')">Hapus Pesanan</button></center>
                              
                               {{-- <p id="textareaId"></p> --}}
                               <p id="textarea{{$produks->id}}"></p>
@@ -347,10 +348,12 @@
 
 var counts = {};
 
-function addValue(value, textareaId, Hargavalue) {
+function addValue(value, textareaId, Hargavalue, buttonId) {
   var hiddenInput = document.getElementById('hiddenInput');
   var hiddenInputHarga = document.getElementById('hiddenInputHarga');
   var textarea = document.getElementById(textareaId);
+  var button_id = document.getElementById(buttonId);
+
 
   // Initialize count if not exists
   if (!counts[value]) {
@@ -374,10 +377,30 @@ function addValue(value, textareaId, Hargavalue) {
   }
 
 
+            if (counts[value]<=0 || counts[value] == '') {
+               
+               button_id.disabled = true;
+
+            } 
+            else {
+               button_id.disabled = false;
+            }
+
+
+
+
+
   // Update the corresponding textarea with the count
   textarea.value = counts[value];
   textarea.innerHTML = "Pemesanan : " + counts[value];
   console.log(textarea.value);
+
+
+
+
+
+
+
 
   var produk_values = hiddenInput.value.split(';');
   var harga_values = hiddenInputHarga.value.split(';');
@@ -438,7 +461,7 @@ function addValue(value, textareaId, Hargavalue) {
 
 
 
-function removeValue(value, textareaId, Hargavalue) {
+function removeValue(value, textareaId, Hargavalue, buttonId) {
             var hiddenInput = document.getElementById("hiddenInput");
             var currentValue = hiddenInput.value;
 
@@ -446,6 +469,8 @@ function removeValue(value, textareaId, Hargavalue) {
             var currentValueHarga = hiddenInputHarga.value;
 
             var textarea = document.getElementById(textareaId);
+
+            var button_id = document.getElementById(buttonId);
 
               // Initialize count if not exists
             if (!counts[value]) {
@@ -476,13 +501,21 @@ function removeValue(value, textareaId, Hargavalue) {
             }
 
 
+            if (counts[value]<=0 || counts[value] == '') {
+               
+               button_id.disabled = true;
 
+            } 
+            else {
+               button_id.disabled = false;
+            }
 
              // Update the corresponding textarea with the count
             textarea.value = counts[value];
             textarea.innerHTML = "Pemesanan : " + counts[value];
             console.log(textarea.value);
 
+            
 
 
 
@@ -494,7 +527,10 @@ function removeValue(value, textareaId, Hargavalue) {
 
 
 
-            var produk_values = hiddenInput.value.split(';');
+
+
+
+  var produk_values = hiddenInput.value.split(';');
   var harga_values = hiddenInputHarga.value.split(';');
   console.log(produk_values);
 
@@ -535,7 +571,7 @@ function removeValue(value, textareaId, Hargavalue) {
   document.getElementById('Total_Harga_Number').value = totalHarga;
 
 
-  
+
 
 
         }
