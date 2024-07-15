@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Owner - Dashboard</title>
+    <title>Barista - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('bootstrap/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -53,16 +53,16 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="{{url('/owner/stok_produk')}}">
+                <a class="nav-link" href="{{url('/barista/stok_produk')}}">
                     <i class="fas fa-fw fa-clipboard-list"></i>
                     <span>Produk</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="{{url('/owner/pemesanan')}}">
+                <a class="nav-link" href="{{url('/barista/ShowPemesanan')}}">
                     <i class="fas fa-fw fa-clipboard-list"></i>
-                    <span>Data Penjualan</span></a>
+                    <span>Data Pemesanan</span></a>
             </li>
 
 
@@ -135,7 +135,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Owner</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Barista</span>
                                 {{-- <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg"> --}}
                             </a>

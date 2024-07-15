@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barista;
+use App\Models\Pemesanan;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class BaristaController extends Controller
@@ -14,6 +16,24 @@ class BaristaController extends Controller
     {
         //
     }
+
+    public function Barista_ShowPemesanan(){
+
+        $pemesanan = Pemesanan::all();
+
+        return view('barista.daftar_pesanan', compact('pemesanan'));
+
+    }
+
+
+    public function Barista_StokProduk() 
+    {
+        $produk = Produk::all();
+        return view('barista.stok_produk', compact('produk'));
+    }
+
+
+
 
     /**
      * Show the form for creating a new resource.

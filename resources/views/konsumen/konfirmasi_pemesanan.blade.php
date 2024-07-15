@@ -43,16 +43,17 @@
                         <a class="nav-link" href="{{url('/')}}">Home</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="about.html">Tentang Kami</a>
+                        <a class="nav-link" href="{{url('/login')}}">Login</a>
                      </li>
-                     <li class="nav-item">
+                     {{-- <li class="nav-item">
                         <a class="nav-link" href="{{url('/ShowQRMenu')}}">Daftar Menu</a>
-                     </li>
+                     </li> --}}
  
                      <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
                      </li>
                   </ul>
+
 
                   <form class="form-inline my-2 my-lg-0">
                      <div class="login_bt">

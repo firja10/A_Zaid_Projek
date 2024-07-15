@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BaristaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KasirController;
@@ -49,6 +50,10 @@ Route::get('kasir/stok_produk', [KasirController::class, 'Kasir_StokProduk'])->n
 
 //Barista
 Route::get('barista/home', [HomeController::class, 'baristaHome'])->name('barista.home')->middleware('is_barista');
+Route::get('barista/ShowPemesanan', [BaristaController::class, 'Barista_ShowPemesanan'])->name('barista.show_pemesanan')->middleware('is_barista');
+Route::get('barista/stok_produk', [BaristaController::class, 'Barista_StokProduk'])->name('Barista_StokProduk')->middleware('is_barista');
+
+
 
 //Owner
 Route::get('owner/home', [HomeController::class, 'ownerHome'])->name('owner.home')->middleware('is_owner');
