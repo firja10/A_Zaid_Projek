@@ -33,6 +33,11 @@ class PemesananController extends Controller
         $pemesanan['id_produk'] = $request->id_produk;
         $pemesanan['id_konsumen'] = $request->id_konsumen;
         $pemesanan['nama_konsumen'] = $request->nama_konsumen;
+        
+        $pemesanan['nomor_hp_pemesanan'] = $request->nomor_hp_pemesanan;
+
+        
+
         $pemesanan['id_kasir'] = $request->id_kasir;
         $pemesanan['id_barista'] = $request->id_barista;
         $pemesanan['nama_barista'] = $request->nama_barista;

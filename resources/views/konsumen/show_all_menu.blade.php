@@ -32,7 +32,7 @@
       <div class="header_section header_bg">
          <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <a class="navbar-brand"href="index.html"><img src="images/logo.png"></a>
+               <a class="navbar-brand"href="index.html"><h2 class="address_text">MABES KOPI</h2></a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
                </button>
@@ -76,7 +76,7 @@
       <div class="coffee_section layout_padding">
          <div class="container">
             <div class="row">
-               <h1 class="coffee_taital">OUR Coffee OFFER</h1>
+               <h1 class="coffee_taital">OUR MENU OFFER</h1>
                <div class="bulit_icon"><img src="{{asset('images/bulit-icon.png')}}"></div>
             </div>
 
@@ -85,7 +85,7 @@
 
                <form action="{{route('PesanMenu')}}" method="POST">
                   @csrf
-                  {{-- <textarea class="form-control" name="list_data_pesanan" id="hiddenInput" cols="30" rows="10"></textarea> --}}
+                  <textarea class="form-control" name="list_data_pesanan" id="hiddenInput" cols="30" rows="10"></textarea>
                   {{-- <input type="hidden" name="list_data_pesanan" id="hiddenInput"> --}}
                   <input type="hidden" name="list_data_harga" id="hiddenInputHarga">
                   {{-- <button class="btn btn-danger" type="submit">Masukkan Keranjang</button> --}}
@@ -110,8 +110,12 @@
                               <div class="coffee_img"><img src="{{asset('storage/Produk/'. $produks->image_produk)}}"></div>
                               <h3 class="types_text">{{$produks->nama_produk}}</h3>
                               <p class="looking_text">{{$produks->kategori_produk}} - {{$produks->harga_produk}}</p>
-                              <div class="read_bt"></div>
+                              {{-- <div class="read_bt"></div> --}}
+                              <p>{{$produks->deskripsi_produk}}</p>
                               <center><button class="btn btn-success" onclick="addValue('<?php echo $produks->nama_produk ?>','textarea<?php echo $produks->id ?>', '<?php echo $produks->harga_produk ?>')">Pesan</button></center>
+                               <br>
+                              <center><button class="btn btn-danger" onclick="removeValue('<?php echo $produks->nama_produk ?>','textarea<?php echo $produks->id ?>', '<?php echo $produks->harga_produk ?>')">Hapus Pesanan</button></center>
+                             
                               {{-- <p id="textareaId"></p> --}}
                               <p id="textarea{{$produks->id}}"></p>
                           
@@ -267,6 +271,9 @@
 
                   <label for="nama_pemesan">Nama Pemesan</label>
                   <input type="text" name="nama_konsumen" id="nama_konsumen" class="form-control">
+
+                  <label for="nomor_hp_pemesanan">Nomor HP Pemesan</label>
+                  <input type="text" name="nomor_hp_pemesanan" id="nomor_hp_pemesanan" class="form-control">
 
                   <input type="hidden" name="list_data_pesanan" id="hiddenInput">
                   <input type="hidden" name="total_harga" id="Total_Harga_Number">
@@ -426,12 +433,116 @@ function addValue(value, textareaId, Hargavalue) {
 
 
 
-
-   
-
-
-
 }
+
+
+
+
+function removeValue(value, textareaId, Hargavalue) {
+            var hiddenInput = document.getElementById("hiddenInput");
+            var currentValue = hiddenInput.value;
+
+            var hiddenInputHarga = document.getElementById("hiddenInputHarga");
+            var currentValueHarga = hiddenInputHarga.value;
+
+            var textarea = document.getElementById(textareaId);
+
+              // Initialize count if not exists
+            if (!counts[value]) {
+               counts[value] = 0;
+            }
+
+            // Update the count
+            counts[value] -= 1;
+
+
+            if (currentValue) {
+                var valuesArray = currentValue.split(";");
+                var index = valuesArray.indexOf(value);
+                if (index !== -1) {
+                    valuesArray.splice(index, 1);
+                    hiddenInput.value = valuesArray.join(";");
+                }
+            }
+
+
+            if (currentValueHarga) {
+                var valuesArrayHarga = currentValueHarga.split(";");
+                var indexHarga = valuesArrayHarga.indexOf(Hargavalue);
+                if (index !== -1) {
+                    valuesArrayHarga.splice(indexHarga, 1);
+                    hiddenInputHarga.value = valuesArrayHarga.join(";");
+                }
+            }
+
+
+
+
+             // Update the corresponding textarea with the count
+            textarea.value = counts[value];
+            textarea.innerHTML = "Pemesanan : " + counts[value];
+            console.log(textarea.value);
+
+
+
+
+
+
+
+
+
+
+
+
+            var produk_values = hiddenInput.value.split(';');
+  var harga_values = hiddenInputHarga.value.split(';');
+  console.log(produk_values);
+
+  var nilai_pesanan = document.getElementById('nilai_pesanan');
+
+  nilai_pesanan.innerHTML='';
+
+
+
+  var table = document.getElementById('tabel_pesanan').getElementsByTagName('tbody')[0];
+
+  // Mengisi nilai td berdasarkan data array
+  for (var i = 0; i < produk_values.length; i++) {
+    var row = table.insertRow();  // Membuat baris baru
+
+    var cellProduk = row.insertCell(0);  // Menambahkan sel untuk harga
+    var cellHarga = row.insertCell(1);  // Menambahkan sel untuk nama produk
+
+   //  var hargaFormatted = parseInt(hargaArray[i]).toLocaleString();
+
+    cellProduk.innerHTML = produk_values[i];  // Mengisi sel harga
+    cellHarga.innerHTML = 'Rp. ' + harga_values[i].toLocaleString();  // Mengisi sel nama produk
+   // cellHarga.innerHTML =  hargaFormatted;  // Mengisi sel nama produk
+
+  }
+
+  var hargaArrayNumber = harga_values.map(function(harga) {
+    return parseInt(harga.replace('.', '')); // Menghapus titik desimal dan mengonversi ke integer
+  });
+
+    // Menjumlahkan nilai dalam hargaArrayNumber
+    var totalHarga = hargaArrayNumber.reduce(function(total, harga) {
+    return total + harga;
+  }, 0);
+
+  document.getElementById('totalHarga').innerText = 'Total Harga: Rp. ' + totalHarga.toLocaleString();
+
+  document.getElementById('Total_Harga_Number').value = totalHarga;
+
+
+  
+
+
+        }
+
+
+
+
 
 
       </script>
