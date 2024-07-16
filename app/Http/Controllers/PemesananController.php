@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pemesanan;
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class PemesananController extends Controller
@@ -21,6 +22,8 @@ class PemesananController extends Controller
     public function PesanMenu(Request $request)
     {
         //
+
+        $pesanan_ex = explode(';', $request->list_data_pesanan);
 
         $pemesanan = new Pemesanan();
 
@@ -54,6 +57,27 @@ class PemesananController extends Controller
             'kode_pesanan'=>$kode_pesanan
 
         ]);
+
+
+        foreach ($pesanan_ex as $key_produk) {
+            # code...
+
+            $produk_hitung = DB::table('produks')->where('nama_produk', $key_produk)->count();
+
+            $produk_cocok = DB::table('produks')->where('nama_produk', $key_produk)->first();
+
+            $stok_prod = $produk_cocok->stok_produk;
+
+            $stok_sisa = (int)$stok_prod - (int)$produk_hitung;
+
+
+            Produk::where('nama_produk', $key_produk)->update([
+
+                'stok_produk'=>$stok_sisa,
+
+            ]);
+        }
+
 
 
         return redirect('/konsumen/Konfirmasi_Pemesanan/'. $id_pesan)->with('tambah_produk','Produk Berhasil Ditambahkan');

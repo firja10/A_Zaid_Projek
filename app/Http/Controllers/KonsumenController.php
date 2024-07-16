@@ -13,7 +13,8 @@ class KonsumenController extends Controller
 
     public function ShowAllMenu()
     {
-        $produk = Produk::all();
+        // $produk = Produk::all();
+        $produk = DB::table('produks')->where('stok_produk', '>', 0)->get();
         return view('konsumen.show_all_menu', compact('produk'));
     }
     
@@ -23,8 +24,8 @@ class KonsumenController extends Controller
     {
 
         // $produk = Produk::all();
-        $produk = DB::table('produks')->where('status_promo', 1)->get();
-        return view('konsumen.show_all_menu', compact('produk'));
+        $produk = DB::table('produks')->where('status_promo', 1)->where('stok_produk', '>', 0 )->get();
+        return view('konsumen.show_promo_menu', compact('produk'));
     }
 
    public function Konsumen_ShowKonfirmasiPemesanan($id) {

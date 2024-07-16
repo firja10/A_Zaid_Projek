@@ -203,6 +203,11 @@
 
                          </tr>
                          <tr>
+                           <th>Nama Pemesan</th>
+                           <td>{{$pemesanan_id->nama_konsumen}}</td>
+                         </tr>
+
+                         <tr>
                            <th>Nomor HP Pemesan</th>
                            <td>{{$pemesanan_id->nomor_hp_pemesanan}}</td>
                          </tr>
