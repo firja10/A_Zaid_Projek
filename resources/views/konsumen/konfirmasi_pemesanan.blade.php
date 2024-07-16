@@ -136,35 +136,38 @@
                            
 
 
-function formatDateTime($dateTimeString) {
-    // Mengubah string menjadi objek DateTime
-    $date = new DateTime($dateTimeString);
-    
-    // Mendefinisikan bulan dalam bahasa Indonesia
-    $monthNames = [
-        1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni",
-        "Juli", "Agustus", "September", "Oktober", "November", "Desember"
-    ];
-    
-    // Mendapatkan hari, bulan, dan tahun
-    $day = $date->format('d');
-    $month = $monthNames[(int)$date->format('m')];
-    $year = $date->format('Y');
-    
-    // Mendapatkan jam, menit, dan detik
-    $time = $date->format('H:i:s');
-    
-    // Menggabungkan hasil format menjadi satu string
-    $formattedDate = "$day $month $year, $time";
-    
-    return $formattedDate;
-}
+                           if (!function_exists('formatDateTime')) {
+                                                    function formatDateTime($dateTimeString) {
+                                                        // Mengubah string menjadi objek DateTime
+                                                        $date = new DateTime($dateTimeString);
+                                                        
+                                                        // Mendefinisikan bulan dalam bahasa Indonesia
+                                                        $monthNames = [
+                                                            1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                                                            "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+                                                        ];
+                                                        
+                                                        // Mendapatkan hari, bulan, dan tahun
+                                                        $day = $date->format('d');
+                                                        $month = $monthNames[(int)$date->format('m')];
+                                                        $year = $date->format('Y');
+                                                        
+                                                        // Mendapatkan jam, menit, dan detik
+                                                        $time = $date->format('H:i:s');
+                                                        
+                                                        // Menggabungkan hasil format menjadi satu string
+                                                        $formattedDate = "$day $month $year, $time";
+                                                        
+                                                        return $formattedDate;
+                                                    }
+                                                }
 
-// Contoh penggunaan
-$dateTimeString = $pemesanan_id->created_at;
-$formattedDateTime = formatDateTime($dateTimeString);
-echo $formattedDateTime; // Output: "13 Juli 2024, 02:30:06"
-?>
+
+                                                   // Contoh penggunaan
+                                                   $dateTimeString = $pemesanan_id->created_at;
+                                                   $formattedDateTime = formatDateTime($dateTimeString);
+                                                   echo $formattedDateTime; // Output: "13 Juli 2024, 02:30:06"
+                                                      ?>
   
 
                             </td>

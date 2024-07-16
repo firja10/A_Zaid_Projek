@@ -36,6 +36,7 @@
                                         <tr>
                                             <th>Kode Pemesanan</th>
                                             <th>Data Pesanan</th>
+                                            <th>Tanggal Pesanan</th>
                                             <th>Nama Kasir</th>
                                             <th>Total Harga</th>
                                             <th>Nama Konsumen</th>
@@ -48,6 +49,7 @@
                                         <tr>
                                             <th>Kode Pemesanan</th>
                                             <th>Data Pesanan</th>
+                                            <th>Tanggal Pesanan</th>
                                             <th>Nama Kasir</th>
                                             <th>Total Harga</th>
                                             <th>Nama Konsumen</th>
@@ -71,6 +73,44 @@
 
                                             <td>{{$pemesananss->kode_pesanan}}</td>
                                             <td><?php echo $list_pesanan ?></td>
+                                            <td>
+                                                <?php
+                                                    
+                                                if (!function_exists('formatDateTime')) {
+                                                    function formatDateTime($dateTimeString) {
+                                                        // Mengubah string menjadi objek DateTime
+                                                        $date = new DateTime($dateTimeString);
+                                                        
+                                                        // Mendefinisikan bulan dalam bahasa Indonesia
+                                                        $monthNames = [
+                                                            1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                                                            "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+                                                        ];
+                                                        
+                                                        // Mendapatkan hari, bulan, dan tahun
+                                                        $day = $date->format('d');
+                                                        $month = $monthNames[(int)$date->format('m')];
+                                                        $year = $date->format('Y');
+                                                        
+                                                        // Mendapatkan jam, menit, dan detik
+                                                        $time = $date->format('H:i:s');
+                                                        
+                                                        // Menggabungkan hasil format menjadi satu string
+                                                        $formattedDate = "$day $month $year, $time";
+                                                        
+                                                        return $formattedDate;
+                                                    }
+                                                }
+
+                                                // Contoh penggunaan
+                                                $dateTimeString = $pemesananss->created_at;
+                                                $formattedDateTime = formatDateTime($dateTimeString);
+                                                echo $formattedDateTime; // Output: "13 Juli 2024, 02:30:06"
+
+                                                
+
+                                                    ?>
+                                            </td>
                                             <td>
                                                 @if ($pemesananss->status_pemesanan==1 || $pemesananss->status_pemesanan==2)
                                                 Nama Kasir Belum Ada
