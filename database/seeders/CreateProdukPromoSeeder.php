@@ -30,7 +30,7 @@ class CreateProdukPromoSeeder extends Seeder
             ],
 
             [
-                'nama_produk'=>'V60',
+                'nama_produk'=>'Kopi Susu 1 L',
                 'kategori_produk'=>'Kopi',
                 'harga_produk'=>'15000',
                  'image_produk'=>'Image_V60.jpg',

@@ -124,23 +124,6 @@
                            </div>
                            @endforeach
 
-                           <div class="col-lg-3 col-md-6">
-                              <div class="coffee_img"><img src="{{asset('storage/Produk/PROMO.jpg')}}"></div>
-                              <h3 class="types_text">PROMO, BELI 45 K GRATIS 3</h3>
-                              <h4>Diskon 10 % </h4>
-                              <p class="looking_text">RP. 45.000</p>
-                              {{-- <div class="read_bt"></div> --}}
-                              <p>{{$produks->deskripsi_produk}}</p>
-                              <center><button type="button" class="btn btn-primary" >Lihat Produk Promo</button></center>
- 
-
-                        
-                           </div>
-
-
-
-                           
-
 
                         </div>
                      </div>
