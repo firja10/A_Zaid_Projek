@@ -30,6 +30,7 @@ class VerifyPaymentController extends Controller
 
         }
 
+        // $transaction = Transaction::find($request->order_id);
         $transaction = Transaction::find($request->order_id);
 
         if ($transaction) {
