@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ProcessPaymentController;
+use App\Http\Controllers\api\VerifyPaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('process-payment', ProcessPaymentController::class);
+Route::post('verify-payment', VerifyPaymentController::class);
