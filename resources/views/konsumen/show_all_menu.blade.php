@@ -254,7 +254,7 @@
 
 
 
-      <form method="POST" action="{{route('PesanMenu') }}">
+      <form method="POST" action="{{route('PesanMenu') }}" id="Form_Pesan">
          @csrf
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog" role="document">
@@ -270,7 +270,7 @@
  
 
 
-                  <label for="nama_pemesan">Nama Pemesan</label>
+                  <label for="nama_konsumen">Nama Pemesan</label>
                   <input type="text" name="nama_konsumen" id="nama_konsumen" class="form-control">
 
                   <label for="nomor_hp_pemesanan">Nomor HP Pemesan</label>
@@ -283,6 +283,7 @@
                   <select name="pembayaran" id="pembayaran" style="width:100%" class="form-control">
 
                      <option value="Cash">Cash</option>
+                     <option value="QRIS">QRIS</option>
                      <option value="BCA">Bank BCA</option>
                   
                   </select>
@@ -520,16 +521,6 @@ function removeValue(value, textareaId, Hargavalue, buttonId) {
 
 
 
-
-
-
-
-
-
-
-
-
-
   var produk_values = hiddenInput.value.split(';');
   var harga_values = hiddenInputHarga.value.split(';');
   console.log(produk_values);
@@ -582,6 +573,71 @@ function removeValue(value, textareaId, Hargavalue, buttonId) {
 
 
       </script>
+
+
+
+
+
+<script>
+
+// document.getElementById('Form_Pesan').addEventListener('submit', function(e) {
+//     e.preventDefault();
+
+//     // Ambil nilai dari input yang berbeda
+//    //  let hargaValue = document.querySelector('input[name="Harga"]').value;
+
+//    let NamaKonsumen = document.querySelector('input[name="nama_konsumen"]').value;
+//    let NomorHPPemesanan = document.querySelector('input[name="nomor_hp_pemesanan"]').value;
+//    let ListDataPesanan = document.querySelector('input[name="list_data_pesanan"]').value;
+//    let TotalHarga = document.querySelector('input[name="total_harga"]').value;
+//    let StatusPemesanan = document.querySelector('input[name="status_pemesanan"]').value;
+
+
+
+//     // Buat FormData untuk permintaan pertama
+//     let formDataFirst = new FormData();
+//     formDataFirst.append('Harga', hargaValue);
+    
+//     fetch('/submit-first', {
+//         method: 'POST',
+//         body: formDataFirst,
+//         headers: {
+//             'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+//         }
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         // Lakukan sesuatu dengan response dari submit-first
+
+//         // Buat FormData untuk permintaan kedua
+//         let formDataSecond = new FormData();
+//         formDataSecond.append('Angka', angkaValue);
+
+//         // Kirim permintaan kedua
+//         return fetch('/submit-second', {
+//             method: 'POST',
+//             body: formDataSecond,
+//             headers: {
+//                 'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+//             }
+//         });
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         // Lakukan sesuatu dengan response dari submit-second
+        
+//         // Redirect ke halaman yang sama
+//         window.location.href = window.location.href;
+//     })
+//     .catch(error => {
+//         console.error('Error:', error);
+//     });
+// });
+
+
+
+
+</script>
 
 
       <script src="{{asset('js/jquery.min.js')}}"></script>

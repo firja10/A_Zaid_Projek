@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pemesanan;
 use App\Models\Produk;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -128,6 +129,16 @@ class PemesananController extends Controller
 
         // return redirect('/konsumen/ShowAllMenu')->with(['success' => 'Silakan Menunggu Konfirmasi Terlebih dahulu']);
 
+
+    }
+
+
+
+    public function Bayar_QRIS($id) {
+
+        $transaction_id = Transaction::findOrFail($id);
+
+        return view('konsumen.pembayaran_QRIS', compact('transaction_id'));
 
     }
 

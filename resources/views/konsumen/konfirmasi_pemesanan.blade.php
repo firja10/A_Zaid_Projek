@@ -250,7 +250,28 @@
 
                          elseif($pemesanan_id->pembayaran == 'Cash') {
                             echo "Silakan lakukan Pembayaran di Kasir ";
-                         } ?>
+                         }
+                         
+                         elseif ($pemesanan_id->pembayaran == 'QRIS') {
+                           # code...                           
+                           ?>
+
+                              <form action="/api/process-payment" method="post">
+                                 @csrf
+
+                                 <input type="hidden" name="invoice_number" value="{{$pemesanan_id->kode_pesanan}}">
+                                 <input type="hidden" name="order_id" value="{{$pemesanan_id->id}}">
+                                 <input type="hidden" name="amount" value="{{$pemesanan_id->total_harga}}">
+                                 
+                                 <button type="submit" class="btn btn-primary" >Lakukan Pembayaran</button>
+
+                              </form>
+
+
+                           <?php 
+                              }
+                           ?>                   
+
                     
                         </h5>
 

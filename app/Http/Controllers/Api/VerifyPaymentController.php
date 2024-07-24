@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class VerifyPaymentController extends Controller
@@ -14,8 +15,7 @@ class VerifyPaymentController extends Controller
      */
     public function __invoke(Request $request)
     {
-        //
-    
+
         $orderId = $request->order_id;
         $statusCode = $request->status_code;
         $grossAmount = $request->gross_amount;
@@ -31,7 +31,7 @@ class VerifyPaymentController extends Controller
         }
 
         // $transaction = Transaction::find($request->order_id);
-        $transaction = Transaction::find($request->order_id);
+        $transaction = DB::table('transactions')->where('id', $request->order_id)->first();
 
         if ($transaction) {
             # code...
@@ -44,14 +44,32 @@ class VerifyPaymentController extends Controller
                 $status = 'EXPIRED';
             }
 
-            $transaction->status = $status;
-            $transaction->save();
+        //     // $transaction->status = $status;
+        //     // $transaction->save();
+
+
+            Transaction::where('id', $request->order_id)->update([
+
+                'status'=>$status
+
+            ]);
+        // }
+
+        if ($statusCode == 201 || $statusCode == 200) {
+            # code...
+            Transaction::where('id', $request->order_id)->update([
+
+                'status'=>$status
+
+            ]);
+            
 
         }
 
+
         return response()->json(['message'=>'successful']);
 
-
-
     }
+}
+
 }
