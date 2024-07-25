@@ -13,7 +13,11 @@ class VerifyPaymentController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    // public function __invoke(Request $request)
+
+
+    public function verify_pay(Request $request)
+
     {
 
         $orderId = $request->order_id;

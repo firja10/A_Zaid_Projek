@@ -22,4 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('process-payment', ProcessPaymentController::class);
-Route::post('verify-payment', VerifyPaymentController::class);
+Route::post('verify-payment', [VerifyPaymentController::class, 'verify_pay'])->name('verify_pay');
