@@ -157,15 +157,18 @@
                                             @if ($pemesananss->status_pemesanan == 1)
                                                 <button class="btn-danger btn">Belum dibayar</button>
                                             @elseif($pemesananss->status_pemesanan == 2)
-                                                <button class="btn-warning btn">Sudah Dibayar</button>
+                                                <button class="btn-success btn">Sudah Dibayar</button>
                                                 <br> <br>
                                                 
                                                     @csrf
                                                     @method('PATCH')
-                                                    <button type="submit" class="btn btn-primary">Konfirmasi Pesanan</button>
+                                                    <button type="submit" class="btn btn-primary">Update Barista</button>
                                               
                                                 @elseif($pemesananss->status_pemesanan == 3)
-                                                <button class="btn-success btn">Pesanan Dikonfirmasi</button>
+                                                <button class="btn-success btn">Pembayaran Expired</button>
+
+                                                @elseif($pemesananss->status_pemesanan == 4)
+                                                <button class="btn-success btn">Pesanan/Pembayaran Batal</button>
                                             @endif
                                                 
                                             </td>

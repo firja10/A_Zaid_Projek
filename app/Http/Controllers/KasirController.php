@@ -41,7 +41,7 @@ class KasirController extends Controller
 
         
         Pemesanan::where('id', $id)->update([
-            'status_pemesanan'=>3,
+            // 'status_pemesanan'=>3,
             'nama_barista'=>$request['nama_barista'],
             'nama_kasir'=>$request['nama_kasir'],
             
