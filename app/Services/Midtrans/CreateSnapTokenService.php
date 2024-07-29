@@ -36,10 +36,15 @@ class CreateSnapTokenService extends Midtrans
             //         'name' => 'Memory Card VGEN 4GB',
             //     ],
             // ],
+            // 'customer_details' => [
+            //     'first_name' => 'Martin Mulyo Syahidin',
+            //     'email' => 'mulyosyahidin95@gmail.com',
+            //     'phone' => '081234567890',
+            // ]
+
             'customer_details' => [
-                'first_name' => 'Martin Mulyo Syahidin',
-                'email' => 'mulyosyahidin95@gmail.com',
-                'phone' => '081234567890',
+                'first_name' => $this->order->nama_konsumen,
+                'phone' => $this->order->nomor_hp_pemesanan,
             ]
         ];
 

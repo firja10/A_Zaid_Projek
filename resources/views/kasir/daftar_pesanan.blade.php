@@ -160,15 +160,19 @@
                                                 <button class="btn-success btn">Sudah Dibayar</button>
                                                 <br> <br>
                                                 
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="submit" class="btn btn-primary">Update Barista</button>
+
                                               
                                                 @elseif($pemesananss->status_pemesanan == 3)
                                                 <button class="btn-success btn">Pembayaran Expired</button>
 
                                                 @elseif($pemesananss->status_pemesanan == 4)
                                                 <button class="btn-success btn">Pesanan/Pembayaran Batal</button>
+                                            @endif
+
+                                            @if ($pemesananss->nama_barista == '' || $pemesananss->nama_barista == NULL)
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit" class="btn btn-primary">Update Barista</button>
                                             @endif
                                                 
                                             </td>
