@@ -89,7 +89,7 @@ class PemesananController extends Controller
         $order['total_price'] = number_format($request->total_harga, 2, '.', '');
         $order['payment_status'] = 1;
         $order['nama_konsumen'] = $request->nama_konsumen;
-        $order['nomor_hp_pemesanan'] = $request->nomor_hp_pemesanan;
+        $order['nomor_handphone_pemesanan'] = $request->nomor_hp_pemesanan;
         $order->save();
 
 
