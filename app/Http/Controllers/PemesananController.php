@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Pemesanan;
 use App\Models\Produk;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+
+use App\Services\Midtrans\CreateSnapTokenService; // => put it at the top of the class
 
 class PemesananController extends Controller
 {
@@ -23,6 +26,8 @@ class PemesananController extends Controller
     public function PesanMenu(Request $request)
     {
         //
+
+        
 
         $pesanan_ex = explode(';', $request->list_data_pesanan);
 
@@ -79,6 +84,25 @@ class PemesananController extends Controller
             ]);
         }
 
+        $order = new Order();
+        $order['number'] = $kode_pesanan;
+        $order['total_price'] = number_format($request->total_harga, 2, '.', '');
+        $order['payment_status'] = 1;
+        $order->save();
+
+
+
+        // $snapToken = $order->snap_token;
+        // if (is_null($snapToken)) {
+        //     // If snap token is still NULL, generate snap token and save it to database
+
+        //     $midtrans = new CreateSnapTokenService($order);
+        //     $snapToken = $midtrans->getSnapToken();
+
+        //     $order->snap_token = $snapToken;
+        //     $order->save();
+
+        // }
 
 
         return redirect('/konsumen/Konfirmasi_Pemesanan/'. $id_pesan)->with('tambah_produk','Produk Berhasil Ditambahkan');
@@ -169,6 +193,22 @@ class PemesananController extends Controller
     public function show(Pemesanan $pemesanan)
     {
         //
+
+
+
+        $snapToken = $pemesanan->snap_token;
+        if (is_null($snapToken)) {
+            // If snap token is still NULL, generate snap token and save it to database
+
+            $midtrans = new CreateSnapTokenService($pemesanan);
+            $snapToken = $midtrans->getSnapToken();
+
+            $pemesanan->snap_token = $snapToken;
+            $pemesanan->save();
+        }
+
+        return view('konsumen.show', compact('pemesanan', 'snapToken'));
+
     }
 
     /**

@@ -280,7 +280,7 @@
                   <select name="pembayaran" id="pembayaran" style="width:100%" class="form-control">
 
                      <option value="Cash">Cash</option>
-                     <option value="BCA">Bank BCA</option>
+                     <option value="Online">Online (TF, QRIS, dll)</option>
                   
                   </select>
                   <br> <br>

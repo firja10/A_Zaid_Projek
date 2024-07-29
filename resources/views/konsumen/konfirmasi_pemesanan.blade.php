@@ -186,16 +186,20 @@
                                 # code...
                                 $actual_link = "https://$_SERVER[HTTP_HOST]";
 
-                                echo "<button class ='btn btn-warning' >Sudah Dibayar</button>";
-                                echo "</br></br>";
-                                echo "<h4>Bukti Bayar : </h4>";
-                                echo "<img style='width:100px' src='/storage/Pemesanan/".$pemesanan_id->bukti_bayar."' alt=''>";
+                                echo "<button class ='btn btn-success' >Sudah Dibayar</button>";
+                                echo "</br>";
+                            
                               //   echo $actual_link;
 
                             }elseif ($pemesanan_id->status_pemesanan == 3) {
                                 # code...
-                                echo "<button class ='btn btn-success' >Sudah Lunas</button>";
+                                echo "<button class ='btn btn-warning' >Sudah Kedaluarsa</button>";
+
+                            } elseif ($pemesanan_id->status_pemesanan == 4) {
+                                # code...
+                                echo "<button class ='btn btn-warning' >Sudah Dibatalkan</button>";
                             }
+
 
 
                          
@@ -217,7 +221,7 @@
 
                          <h5><?php
                          
-                         if ($pemesanan_id->pembayaran == 'BCA') {
+                         if ($pemesanan_id->pembayaran == 'BCA_TF') {
                             # code...
                             echo "Silakan lakukan Pembayaran dengan Transfer atas nama berikut : ";
                             echo "</br>";
@@ -251,26 +255,30 @@
                          elseif($pemesanan_id->pembayaran == 'Cash') {
                             echo "Silakan lakukan Pembayaran di Kasir ";
                          }
-                         
-                         elseif ($pemesanan_id->pembayaran == 'QRIS') {
-                           # code...                           
-                           ?>
+                                                          
+                              elseif ($pemesanan_id->pembayaran == 'Online') {
+                           ?>            
 
-                              <form action="/api/process-payment" method="post">
-                                 @csrf
+                              @if ($order->payment_status == 1)
+                              <button class="btn btn-primary" id="pay-button">Lakukan Pembayaran</button>
+                              @elseif($order->payment_status == 2)
+                              Pembayaran Berhasil
+                              @elseif($order->payment_status == 3)
+                              Kedaluarsa
+                              @elseif($order->payment_status == 4)
+                              Dibatalkan
+                              @endif
 
-                                 <input type="hidden" name="invoice_number" value="{{$pemesanan_id->kode_pesanan}}">
-                                 <input type="hidden" name="order_id" value="{{$pemesanan_id->id}}">
-                                 <input type="hidden" name="amount" value="{{$pemesanan_id->total_harga}}">
-                                 
-                                 <button type="submit" class="btn btn-primary" >Lakukan Pembayaran</button>
-
-                              </form>
+                           <?php
+                        } ?>
 
 
-                           <?php 
-                              }
-                           ?>                   
+
+
+
+
+
+
 
                     
                         </h5>
@@ -353,6 +361,40 @@
       </div>
       <!-- copyright section end -->
       <!-- Javascript files-->
+
+
+      
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.sandbox_client_key') }}">
+    </script>
+    <script>
+        const payButton = document.querySelector('#pay-button');
+        payButton.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            snap.pay('{{ $snapToken }}', {
+                // Optional
+                onSuccess: function(result) {
+                    /* You may add your own js here, this is just example */
+                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    console.log(result)
+                },
+                // Optional
+                onPending: function(result) {
+                    /* You may add your own js here, this is just example */
+                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    console.log(result)
+                },
+                // Optional
+                onError: function(result) {
+                    /* You may add your own js here, this is just example */
+                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    console.log(result)
+                }
+            });
+        });
+    </script>
+
+
       <script src="{{asset('js/jquery.min.js')}}"></script>
       <script src="{{asset('js/popper.min.js')}}"></script>
       <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>

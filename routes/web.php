@@ -5,10 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\KonsumenController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\TransactionController;
 use App\Models\Pemesanan;
+use App\Http\Controllers\PaymentCallbackController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -41,6 +44,11 @@ Route::get('konsumen/Konfirmasi_Pemesanan/{id}', [KonsumenController::class, 'Ko
 Route::patch('konsumen/Konfirmasi_Pemesanan_id/{id}', [PemesananController::class, 'KonfirmasiPesanan'])->name('KonfirmasiPesanan');
 Route::get('konsumen/Pembayaran_QRIS/{id}', [PemesananController::class, 'Bayar_QRIS'])->name('Bayar_QRIS');
 
+// Route::get('konsumen/show', [TransactionController::class, 'show'])->name('konsumen.show');
+
+Route::get('konsumen/show/{order_id}', [TransactionController::class, 'show'])->name('konsumen.show');
+Route::post('konsumen/midtrans-notification', [TransactionController::class, 'receive']);
+
 
 //Kasir
 Route::get('kasir/home', [HomeController::class, 'kasirHome'])->name('kasir.home')->middleware('is_kasir');
@@ -71,3 +79,8 @@ Route::delete('owner/stok_produk/{id}', [ProdukController::class, 'StokProdukDel
 Route::get('owner/pemesanan', [OwnerController::class, 'Pemesanan'])->name('Pemesanan')->middleware('is_owner');
 
 Route::get('/showQR', [ProdukController::class, 'showQR']);
+
+
+
+Route::resource('orders', OrderController::class)->only(['index', 'show']);
+Route::post('payments/midtrans-notification', [PaymentCallbackController::class, 'receive']);
