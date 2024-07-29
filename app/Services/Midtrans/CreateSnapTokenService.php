@@ -44,7 +44,7 @@ class CreateSnapTokenService extends Midtrans
 
             'customer_details' => [
                 'first_name' => $this->order->nama_konsumen,
-                'phone' => $this->order->nomor_hp_pemesanan,
+                'phone' => $this->order->nomor_handphone_pemesanan,
             ]
         ];
 
