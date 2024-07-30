@@ -20,6 +20,21 @@ class KonsumenController extends Controller
         $produk = DB::table('produks')->where('stok_produk', '>', 0)->get();
         return view('konsumen.show_all_menu', compact('produk'));
     }
+
+
+    public function ShowKopiMenu()
+    {
+        $produk = DB::table('produks')->where('stok_produk', '>', 0)->where('kategori_produk', 'Kopi')->get();
+        return view('konsumen.show_kopi_menu', compact('produk'));
+    }
+
+
+    public function ShowNonKopiMenu()
+    {
+        $produk = DB::table('produks')->where('stok_produk', '>', 0)->where('kategori_produk', 'Non-Kopi')->get();
+        return view('konsumen.show_nonkopi_menu', compact('produk'));
+    }
+    
     
 
 

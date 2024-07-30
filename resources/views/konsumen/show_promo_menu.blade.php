@@ -92,8 +92,9 @@
                   {{-- <button class="btn btn-danger" type="submit">Masukkan Keranjang</button> --}}
                </form>
 
+               <a class="btn btn-secondary" href="{{url('konsumen/ShowKopiMenu')}}">Menu Kopi</a>
                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pesanan</button>
-
+               <a class="btn btn-warning" href="{{url('konsumen/ShowNonKopiMenu')}}">Menu Non-Kopi</a>
             </center>
 
          </div>

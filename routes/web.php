@@ -12,6 +12,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\TransactionController;
 use App\Models\Pemesanan;
 use App\Http\Controllers\PaymentCallbackController;
+use App\Models\Konsumen;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -84,3 +85,6 @@ Route::get('/showQR', [ProdukController::class, 'showQR']);
 
 Route::resource('orders', OrderController::class)->only(['index', 'show']);
 Route::post('payments/midtrans-notification', [PaymentCallbackController::class, 'receive']);
+
+Route::get('konsumen/ShowKopiMenu', [KonsumenController::class, 'ShowKopiMenu'])->name('konsumen.showkopimenu');
+Route::get('konsumen/ShowNonKopiMenu', [KonsumenController::class, 'ShowNonKopiMenu'])->name('konsumen.shownonkopimenu');
