@@ -102,11 +102,17 @@
                   {{-- <button class="btn btn-danger" type="submit">Masukkan Keranjang</button> --}}
                </form>
 
-               <a class="btn btn-secondary" href="{{url('konsumen/ShowKopiMenu')}}">Menu Kopi</a>
+               {{-- <a class="btn btn-secondary" href="{{url('konsumen/ShowKopiMenu')}}">Menu Kopi</a> --}}
 
-               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pesanan</button>
+               <button class="btn btn-secondary" onclick="showKopi()">Menu Kopi</button>
+               <button class="btn btn-primary" onclick="showAllMenu()">Semua Menu</button>
 
-               <a class="btn btn-warning" href="{{url('konsumen/ShowNonKopiMenu')}}">Menu Non-Kopi</a>
+               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Konfirmasi Pesanan</button>
+
+               <button class="btn btn-warning" onclick="showNonKopi()">Menu Non-Kopi</button>
+
+
+               {{-- <a class="btn btn-warning" href="{{url('konsumen/ShowNonKopiMenu')}}">Menu Non-Kopi</a> --}}
             </center>
 
          </div>
@@ -120,7 +126,9 @@
 
 
                            @foreach ($produk as $produks)
-                           <div class="col-lg-3 col-md-6">
+
+                           @if ($produks->kategori_produk == "Kopi" )
+                           <div class="col-lg-3 col-md-6 Kopi Menu">
                               <div class="coffee_img"><img src="{{asset('storage/Produk/'. $produks->image_produk)}}"></div>
                               <h3 class="types_text">{{$produks->nama_produk}}</h3>
                               <p class="looking_text">{{$produks->kategori_produk}} - {{$produks->harga_produk}}</p>
@@ -131,11 +139,26 @@
                               <center><button disabled class="btn btn-danger" id="button<?php echo $produks->id ?>" onclick="removeValue('<?php echo $produks->nama_produk ?>','textarea<?php echo $produks->id ?>', '<?php echo $produks->harga_produk ?>', 'button<?php echo $produks->id ?>')">Hapus Pesanan</button></center>
                              
                               {{-- <p id="textareaId"></p> --}}
-                              <p id="textarea{{$produks->id}}"></p>
-                          
-
-
+                              <p id="textarea{{$produks->id}}"></p> 
                            </div>
+                           @else
+                           <div class="col-lg-3 col-md-6 NonKopi Menu">
+                              <div class="coffee_img"><img src="{{asset('storage/Produk/'. $produks->image_produk)}}"></div>
+                              <h3 class="types_text">{{$produks->nama_produk}}</h3>
+                              <p class="looking_text">{{$produks->kategori_produk}} - {{$produks->harga_produk}}</p>
+                              {{-- <div class="read_bt"></div> --}}
+                              <p>{{$produks->deskripsi_produk}}</p>
+                              <center><button class="btn btn-success" onclick="addValue('<?php echo $produks->nama_produk ?>','textarea<?php echo $produks->id ?>', '<?php echo $produks->harga_produk ?>', 'button<?php echo $produks->id ?>')">Pesan</button></center>
+                               <br>
+                              <center><button disabled class="btn btn-danger" id="button<?php echo $produks->id ?>" onclick="removeValue('<?php echo $produks->nama_produk ?>','textarea<?php echo $produks->id ?>', '<?php echo $produks->harga_produk ?>', 'button<?php echo $produks->id ?>')">Hapus Pesanan</button></center>
+                             
+                              {{-- <p id="textareaId"></p> --}}
+                              <p id="textarea{{$produks->id}}"></p> 
+                           </div>
+                               
+                           @endif
+
+
                            @endforeach
 
 
@@ -573,15 +596,7 @@ function removeValue(value, textareaId, Hargavalue, buttonId) {
 
   document.getElementById('Total_Harga_Number').value = totalHarga;
 
-
-
-
-
         }
-
-
-
-
 
 
       </script>
@@ -591,6 +606,48 @@ function removeValue(value, textareaId, Hargavalue, buttonId) {
 
 
 <script>
+
+
+
+      function showKopi() {
+         var elems1 = document.getElementsByClassName('NonKopi');
+         for (var i=0;i<elems1.length;i+=1){
+         elems1[i].style.display = 'none';
+         }
+
+         var elems2 = document.getElementsByClassName('Kopi');
+         for (let j = 0; j < elems2.length; j++) {
+            elems2[j].style.display = 'block';
+         }
+         console.log('Kopi');
+        }
+
+        
+        function showNonKopi() {
+         var elems1 = document.getElementsByClassName('Kopi');
+         for (var i=0;i<elems1.length;i+=1){
+         elems1[i].style.display = 'none';
+         }
+
+         var elems2 = document.getElementsByClassName('NonKopi');
+         for (let j = 0; j < elems2.length; j++) {
+            elems2[j].style.display = 'block';
+         }
+        }
+
+
+        function showAllMenu() {
+         var elems1 = document.getElementsByClassName('Menu');
+         for (var i=0;i<elems1.length;i+=1){
+         elems1[i].style.display = 'block';
+         }
+
+        }
+
+
+
+
+
 
 // document.getElementById('Form_Pesan').addEventListener('submit', function(e) {
 //     e.preventDefault();
