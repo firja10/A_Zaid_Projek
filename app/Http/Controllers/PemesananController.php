@@ -9,6 +9,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 use App\Services\Midtrans\CreateSnapTokenService; // => put it at the top of the class
 
@@ -236,4 +237,21 @@ class PemesananController extends Controller
     {
         //
     }
+
+
+    public function CetakPesanan()
+    {
+        //
+
+        $pemesanan = Pemesanan::all();
+
+        // $pdf = PDF::loadview('orders.pdf_pemesanan_dummy', compact('pemesanan'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadview('orders.pdf_pemesanan', compact('pemesanan'))->setPaper('a4', 'landscape');
+
+        return $pdf->download('laporan_pemesanan.pdf');
+        
+    }
+
+    
+  
 }

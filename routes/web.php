@@ -88,3 +88,5 @@ Route::post('payments/midtrans-notification', [PaymentCallbackController::class,
 
 Route::get('konsumen/ShowKopiMenu', [KonsumenController::class, 'ShowKopiMenu'])->name('konsumen.showkopimenu');
 Route::get('konsumen/ShowNonKopiMenu', [KonsumenController::class, 'ShowNonKopiMenu'])->name('konsumen.shownonkopimenu');
+
+Route::get('konsumen/CetakPesanan', [PemesananController::class, 'CetakPesanan'])->name('CetakPesanan');
