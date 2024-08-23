@@ -124,6 +124,53 @@
                      <div class="container-fluid">
                         <div class="row">
 
+                           @foreach ($produk_best as $produks_best)
+
+
+
+                           @if ($produks_best->kategori_produk == "Kopi" )
+                           <div class="col-lg-3 col-md-6 Kopi Menu">
+                              <div class="coffee_img"><img src="{{asset('storage/Produk/'. $produks_best->image_produk)}}"></div>
+                              <div class="bg-dark">
+                                 <center>
+                                    <h3 class="text-light pt-3 mt-4" style="margin-top:5px;">BEST SELLER 👍</h3>
+                                 </center>
+                              </div>
+                             
+                              <h3 class="types_text">{{$produks_best->nama_produk}}</h3>
+                              <p class="looking_text">{{$produks_best->kategori_produk}} - {{$produks_best->harga_produk}}</p>
+                              {{-- <div class="read_bt"></div> --}}
+                              <p>{{$produks_best->deskripsi_produk}}</p>
+                              <center><button class="btn btn-success" onclick="addValue('<?php echo $produks_best->nama_produk ?>','textarea<?php echo $produks_best->id ?>', '<?php echo $produks_best->harga_produk ?>', 'button<?php echo $produks_best->id ?>')">Pesan</button></center>
+                               <br>
+                              <center><button disabled class="btn btn-danger" id="button<?php echo $produks_best->id ?>" onclick="removeValue('<?php echo $produks_best->nama_produk ?>','textarea<?php echo $produks_best->id ?>', '<?php echo $produks_best->harga_produk ?>', 'button<?php echo $produks_best->id ?>')">Hapus Pesanan</button></center>
+                             
+                              {{-- <p id="textareaId"></p> --}}
+                              <p id="textarea{{$produks_best->id}}"></p> 
+                           </div>
+                           @else
+                           <div class="col-lg-3 col-md-6 NonKopi Menu">
+                              <div class="coffee_img"><img src="{{asset('storage/Produk/'. $produks_best->image_produk)}}"></div>
+                              <h3 class="types_text">{{$produks_best->nama_produk}}</h3>
+                              <p class="looking_text">{{$produks_best->kategori_produk}} - {{$produks_best->harga_produk}}</p>
+                              {{-- <div class="read_bt"></div> --}}
+                              <p>{{$produks_best->deskripsi_produk}}</p>
+                              <center><button class="btn btn-success" onclick="addValue('<?php echo $produks_best->nama_produk ?>','textarea<?php echo $produks_best->id ?>', '<?php echo $produks_best->harga_produk ?>', 'button<?php echo $produks_best->id ?>')">Pesan</button></center>
+                               <br>
+                              <center><button disabled class="btn btn-danger" id="button<?php echo $produks_best->id ?>" onclick="removeValue('<?php echo $produks_best->nama_produk ?>','textarea<?php echo $produks_best->id ?>', '<?php echo $produks_best->harga_produk ?>', 'button<?php echo $produks_best->id ?>')">Hapus Pesanan</button></center>
+                             
+                              {{-- <p id="textareaId"></p> --}}
+                              <p id="textarea{{$produks_best->id}}"></p> 
+                           </div>
+                               
+                           @endif
+
+
+
+
+                               
+                           @endforeach
+
 
                            @foreach ($produk as $produks)
 
@@ -158,8 +205,7 @@
                                
                            @endif
 
-
-                           @endforeach
+                        @endforeach
 
 
 
@@ -239,25 +285,25 @@
             <div class="row">
                <div class="col-md-12">
                   <h1 class="address_text">Address</h1>
-                  <p class="footer_text">here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use </p>
+                  <p class="footer_text">Jl. Gumuruh No.42a, Kecamatan Batununggal, Kota Bandung, Jawa Barat</p>
                   <div class="location_text">
                      <ul>
                         <li>
                            <a href="#">
-                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">+01 1234567890</span>
+                              <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">089674470638</span>
                            </a>
                         </li>
                         <li>
                            <a href="#">
-                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">demo@gmail.com</span>
+                              <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">mabeskopi@gmail.com</span>
                            </a>
                         </li>
                      </ul>
                   </div>
-                  <div class="form-group">
+                  {{-- <div class="form-group">
                      <textarea class="update_mail" placeholder="Your Email" rows="5" id="comment" name="Your Email"></textarea>
                      <div class="subscribe_bt"><a href="#"><img src="images/teligram-icon.png"></a></div>
-                  </div>
+                  </div> --}}
                </div>
             </div>
          </div>
@@ -268,7 +314,7 @@
          <div class="container">
             <div class="row">
                <div class="col-lg-6 col-sm-12">
-                  <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free Html Templates</a></p>
+                  <p class="copyright_text">2024 All Rights Reserved. Design by <a href="https://html.design">Zaid Ishmatul</a></p>
                </div>
                <div class="col-lg-6 col-sm-12">
                   <div class="footer_social_icon">

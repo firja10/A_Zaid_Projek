@@ -17,22 +17,25 @@ class KonsumenController extends Controller
     public function ShowAllMenu()
     {
         // $produk = Produk::all();
-        $produk = DB::table('produks')->where('stok_produk', '>', 0)->get();
-        return view('konsumen.show_all_menu', compact('produk'));
+        $produk_best = DB::table('produks')->where('stok_produk', '>', 0)->where('best_status', 1)->get();
+        $produk = DB::table('produks')->where('stok_produk', '>', 0)->where('best_status', NULL)->get();
+        return view('konsumen.show_all_menu', compact('produk', 'produk_best'));
     }
 
 
     public function ShowKopiMenu()
     {
-        $produk = DB::table('produks')->where('stok_produk', '>', 0)->where('kategori_produk', 'Kopi')->get();
-        return view('konsumen.show_kopi_menu', compact('produk'));
+        $produk_best = DB::table('produks')->where('stok_produk', '>', 0)->where('kategori_produk', 'Kopi')->where('best_status', 1)->get();
+        $produk = DB::table('produks')->where('stok_produk', '>', 0)->where('kategori_produk', 'Kopi')->where('best_status', NULL)->get();
+        return view('konsumen.show_kopi_menu', compact('produk', 'produk_best'));
     }
 
 
     public function ShowNonKopiMenu()
     {
-        $produk = DB::table('produks')->where('stok_produk', '>', 0)->where('kategori_produk', 'Non-Kopi')->get();
-        return view('konsumen.show_nonkopi_menu', compact('produk'));
+        $produk_best = DB::table('produks')->where('stok_produk', '>', 0)->where('kategori_produk', 'Non-Kopi')->where('best_status', 1)->get();
+        $produk = DB::table('produks')->where('stok_produk', '>', 0)->where('kategori_produk', 'Non-Kopi')->where('best_status', NULL)->get();
+        return view('konsumen.show_nonkopi_menu', compact('produk', 'produk_best'));
     }
     
     
@@ -42,8 +45,9 @@ class KonsumenController extends Controller
     {
 
         // $produk = Produk::all();
-        $produk = DB::table('produks')->where('status_promo', 1)->where('stok_produk', '>', 0 )->get();
-        return view('konsumen.show_promo_menu', compact('produk'));
+        $produk_best = DB::table('produks')->where('status_promo', 1)->where('stok_produk', '>', 0 )->where('best_status', 1)->get();
+        $produk = DB::table('produks')->where('status_promo', 1)->where('stok_produk', '>', 0 )->where('best_status', NULL)->get();
+        return view('konsumen.show_promo_menu', compact('produk', 'produk_best'));
     }
 
 

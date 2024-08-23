@@ -119,6 +119,32 @@
                         <div class="row">
 
 
+                           @foreach ($produk_best as $produks_best)
+
+                           <div class="col-lg-3 col-md-6">
+                              <div class="coffee_img"><img src="{{asset('storage/Produk/'. $produks_best->image_produk)}}"></div>
+                              <div class="bg-dark">
+                                 <center>
+                                    <h3 class="text-light mt-4" style="margin-top:5px;">BEST SELLER 👍</h3>
+                                 </center>
+                              </div>
+                             
+                              <h3 class="types_text">{{$produks_best->nama_produk}}</h3>
+                              <p class="looking_text">{{$produks_best->kategori_produk}} - {{$produks_best->harga_produk}}</p>
+                              {{-- <div class="read_bt"></div> --}}
+                              <p>{{$produks_best->deskripsi_produk}}</p>
+                              <center><button class="btn btn-success" onclick="addValue('<?php echo $produks_best->nama_produk ?>','textarea<?php echo $produks_best->id ?>', '<?php echo $produks_best->harga_produk ?>', 'button<?php echo $produks_best->id ?>')">Pesan</button></center>
+                               <br>
+                              <center><button disabled class="btn btn-danger" id="button<?php echo $produks_best->id ?>" onclick="removeValue('<?php echo $produks_best->nama_produk ?>','textarea<?php echo $produks_best->id ?>', '<?php echo $produks_best->harga_produk ?>', 'button<?php echo $produks_best->id ?>')">Hapus Pesanan</button></center>
+                             
+                              {{-- <p id="textareaId"></p> --}}
+                              <p id="textarea{{$produks_best->id}}"></p> 
+                           </div>
+                     
+                           @endforeach
+
+
+
                            @foreach ($produk as $produks)
                            <div class="col-lg-3 col-md-6">
                               <div class="coffee_img"><img src="{{asset('storage/Produk/'. $produks->image_produk)}}"></div>
@@ -132,9 +158,6 @@
                              
                               {{-- <p id="textareaId"></p> --}}
                               <p id="textarea{{$produks->id}}"></p>
-                          
-
-
                            </div>
                            @endforeach
 

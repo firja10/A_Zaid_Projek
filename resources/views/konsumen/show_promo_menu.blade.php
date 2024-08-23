@@ -110,6 +110,52 @@
                      <div class="container-fluid">
                         <div class="row">
 
+
+                           @foreach ($produk_best as $produks_best)
+
+                           @if ($produks_best->kategori_produk == "Kopi" )
+                           <div class="col-lg-3 col-md-6 Kopi Menu">
+                              <div class="coffee_img"><img src="{{asset('storage/Produk/'. $produks_best->image_produk)}}"></div>
+                              <div class="bg-dark">
+                                 <center>
+                                    <h3 class="text-light mt-4" style="margin-top:5px;">BEST SELLER 👍</h3>
+                                 </center>
+                              </div>
+                             
+                              <h3 class="types_text">{{$produks_best->nama_produk}}</h3>
+                              <p class="looking_text">{{$produks_best->kategori_produk}} - {{$produks_best->harga_produk}}</p>
+                              {{-- <div class="read_bt"></div> --}}
+                              <p>{{$produks_best->deskripsi_produk}}</p>
+                              <center><button class="btn btn-success" onclick="addValue('<?php echo $produks_best->nama_produk ?>','textarea<?php echo $produks_best->id ?>', '<?php echo $produks_best->harga_produk ?>', 'button<?php echo $produks_best->id ?>')">Pesan</button></center>
+                               <br>
+                              <center><button disabled class="btn btn-danger" id="button<?php echo $produks_best->id ?>" onclick="removeValue('<?php echo $produks_best->nama_produk ?>','textarea<?php echo $produks_best->id ?>', '<?php echo $produks_best->harga_produk ?>', 'button<?php echo $produks_best->id ?>')">Hapus Pesanan</button></center>
+                             
+                              {{-- <p id="textareaId"></p> --}}
+                              <p id="textarea{{$produks_best->id}}"></p> 
+                           </div>
+                           @else
+                           <div class="col-lg-3 col-md-6 NonKopi Menu">
+                              <div class="coffee_img"><img src="{{asset('storage/Produk/'. $produks_best->image_produk)}}"></div>
+                              <h3 class="types_text">{{$produks_best->nama_produk}}</h3>
+                              <p class="looking_text">{{$produks_best->kategori_produk}} - {{$produks_best->harga_produk}}</p>
+                              {{-- <div class="read_bt"></div> --}}
+                              <p>{{$produks_best->deskripsi_produk}}</p>
+                              <center><button class="btn btn-success" onclick="addValue('<?php echo $produks_best->nama_produk ?>','textarea<?php echo $produks_best->id ?>', '<?php echo $produks_best->harga_produk ?>', 'button<?php echo $produks_best->id ?>')">Pesan</button></center>
+                               <br>
+                              <center><button disabled class="btn btn-danger" id="button<?php echo $produks_best->id ?>" onclick="removeValue('<?php echo $produks_best->nama_produk ?>','textarea<?php echo $produks_best->id ?>', '<?php echo $produks_best->harga_produk ?>', 'button<?php echo $produks_best->id ?>')">Hapus Pesanan</button></center>
+                             
+                              {{-- <p id="textareaId"></p> --}}
+                              <p id="textarea{{$produks_best->id}}"></p> 
+                           </div>
+                               
+                           @endif
+
+                           @endforeach
+
+
+
+
+
                            @foreach ($produk as $produks)
                            @if ($produks->kategori_produk == "Kopi" )
                            <div class="col-lg-3 col-md-6 Kopi Menu">
@@ -234,10 +280,10 @@
                         </li>
                      </ul>
                   </div>
-                  <div class="form-group">
+                  {{-- <div class="form-group">
                      <textarea class="update_mail" placeholder="Your Email" rows="5" id="comment" name="Your Email"></textarea>
                      <div class="subscribe_bt"><a href="#"><img src="images/teligram-icon.png"></a></div>
-                  </div>
+                  </div> --}}
                </div>
             </div>
          </div>
