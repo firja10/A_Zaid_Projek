@@ -151,6 +151,12 @@
                            @else
                            <div class="col-lg-3 col-md-6 NonKopi Menu">
                               <div class="coffee_img"><img src="{{asset('storage/Produk/'. $produks_best->image_produk)}}"></div>
+                              <div class="bg-dark">
+                                 <center>
+                                    <h3 class="text-light pt-3 mt-4" style="margin-top:5px;">BEST SELLER 👍</h3>
+                                 </center>
+                              </div>
+
                               <h3 class="types_text">{{$produks_best->nama_produk}}</h3>
                               <p class="looking_text">{{$produks_best->kategori_produk}} - {{$produks_best->harga_produk}}</p>
                               {{-- <div class="read_bt"></div> --}}
