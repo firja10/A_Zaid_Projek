@@ -38,6 +38,7 @@
                                             <th>Kategori Produk</th>
                                             <th>Harga Produk</th>
                                             <th>Stok_Produk</th>
+                                            <th>Stok Total Bahan</th>
                                             <th>Gambar Produk</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -48,6 +49,7 @@
                                             <th>Kategori Produk</th>
                                             <th>Harga Produk</th>
                                             <th>Stok_Produk</th>
+                                            <th>Stok Total Bahan</th>
                                             <th>Gambar Produk</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -73,6 +75,26 @@
                                             $nama_produk = DB::table('produks')->where('nama_produk', $produks->nama_produk)->count();
                                             echo $nama_produk;
                                             ?></td>
+
+
+                                                <td>
+                                                    <ul>
+                                                        
+                                            
+                                                    @if ($produks->stok_total_1 != NULL)
+                                                    <li> {{$produks->stok_total_1}} </li>                                                       
+                                                    @elseif($produks->stok_total_2 != NULL)
+                                                    <li> {{$produks->stok_total_2}} </li>  
+                                                    @elseif($produks->stok_total_3 != NULL)
+                                                    <li>   {{$produks->stok_total_3}}  </li> 
+                                                    @else
+                                                        
+                                                    @endif
+                                                    </ul>
+                                                </td>
+
+
+
                                             <td>
                                                 <img src="{{asset('storage/Produk/'. $produks->image_produk) }}" alt="" style="width: 200px;">
                                                 

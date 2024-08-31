@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BahanBaku;
 use App\Models\Produk;
 
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -63,7 +64,8 @@ class ProdukController extends Controller
     {
 
         $produk_id = Produk::findOrFail($id);
-        return view('owner.stok_produk_id', compact('produk_id'));
+        $bahan_baku = BahanBaku::all();
+        return view('owner.stok_produk_id', compact('produk_id', 'bahan_baku'));
 
 
     }
@@ -97,6 +99,26 @@ class ProdukController extends Controller
         'stok_produk'=> $request['stok_produk'],
         'kategori_produk'=>  $request['kategori_produk'],
         'image_produk' =>$filename,
+
+
+        'kode_bahan_1'=>$request['kode_bahan_1'],
+        'stok_bahan_1'=>$request['stok_bahan_1'],
+        'stok_total_1'=>$request['stok_total_1'],
+        'satuan_1'=>$request['satuan_1'],
+
+
+        'kode_bahan_2'=>$request['kode_bahan_2'],
+        'stok_bahan_2'=>$request['stok_bahan_2'],
+        'stok_total_2'=>$request['stok_total_2'],
+        'satuan_2'=>$request['satuan_2'],
+
+        'kode_bahan_3'=>$request['kode_bahan_3'],
+        'stok_bahan_3'=>$request['stok_bahan_3'],
+        'stok_total_3'=>$request['stok_total_3'],
+        'satuan_3'=>$request['satuan_3'],
+
+
+
         // 'urgensitas'=>$request->urgensitas,
     ]);
 
@@ -121,13 +143,13 @@ class ProdukController extends Controller
 
   public function StokProdukForm() {
 
-
-    return view('owner.stok_produk_store');
-
+    $bahan_baku = BahanBaku::all();
+    return view('owner.stok_produk_store', compact('bahan_baku'));
 
   }
 
 
+  
   public function StokProdukStore(Request $request) {
 
     $produks = new Produk();

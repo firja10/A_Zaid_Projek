@@ -62,6 +62,89 @@
                                  </div>
 
 
+
+                                 <div class="form-group">
+                                    <label for="kode_bahan_1">Nama Bahan 1</label>
+                                 
+                                    <select name="kode_bahan_1" id="kode_bahan_1">                                   
+                                        @foreach ($bahan_baku as $bahan_bakus)
+                                            <option value="{{$bahan_bakus->kode_bahan}}">{{$bahan_bakus->nama_bahan}}</option>
+                                        @endforeach
+                                    </select>
+
+                                 </div>
+
+
+
+                                 
+                                 <div class="form-group">
+                                    <label for="stok_total_1">Stok Total Bahan 1</label>
+                                    <input type="number" class="form-control" placeholder="{{$produk_id->stok_total_1}}" value="{{$produk_id->stok_total_1}}" name="stok_total_1" id="stok_total_1">
+                                 </div>
+
+                                 
+                                <div class="form-group">
+                                    <label for="satuan_1">Satuan Bahan 1</label>
+                                    <input type="text" name="satuan_bahan_1" id="satuan_bahan_3">
+                                </div>
+
+
+
+                                 <div class="form-group">
+                                    <label for="kode_bahan_2">Nama Bahan 2</label>
+                                 
+                                    <select name="kode_bahan_2" id="kode_bahan_2">                                   
+                                        @foreach ($bahan_baku as $bahan_bakus)
+                                            <option value="{{$bahan_bakus->kode_bahan}}">{{$bahan_bakus->nama_bahan}}</option>
+                                        @endforeach
+                                    </select>
+
+                                 </div>
+
+
+
+
+
+                                 <div class="form-group">
+                                    <label for="stok_total_2">Stok Total Bahan 2</label>
+                                    <input type="number" class="form-control" placeholder="{{$produk_id->stok_total_2}}" value="{{$produk_id->stok_total_2}}" name="stok_total_2" id="stok_total_2">
+                                 </div>
+
+
+                                 <div class="form-group">
+                                    <label for="satuan_2">Satuan Bahan 2</label>
+                                    <input type="text" name="satuan_2" id="satuan_2">
+                                </div>
+
+
+
+
+                                 <div class="form-group">
+                                    <label for="kode_bahan_3">Nama Bahan 3</label>
+                                 
+                                    <select name="kode_bahan_3" id="kode_bahan_3">                                   
+                                        @foreach ($bahan_baku as $bahan_bakus)
+                                            <option value="{{$bahan_bakus->kode_bahan}}">{{$bahan_bakus->nama_bahan}}</option>
+                                        @endforeach
+                                    </select>
+
+                                 </div>
+
+
+
+
+                                 <div class="form-group">
+                                    <label for="stok_total_3">Stok Total Bahan 3</label>
+                                    <input type="number" class="form-control" placeholder="{{$produk_id->stok_total_3}}" value="{{$produk_id->stok_total_3}}" name="stok_total_3" id="stok_total_3">
+                                 </div>
+
+                                 <div class="form-group">
+                                    <label for="satuan_3">Satuan Bahan 3</label>
+                                    <input type="text" name="satuan_3" id="satuan_3">
+                                </div>
+
+
+
                                  <button class="btn-primary btn btn-user btn-block" type="submit">Submit</button>
 
                                  <hr>
