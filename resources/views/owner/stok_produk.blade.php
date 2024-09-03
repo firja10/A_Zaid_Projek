@@ -81,12 +81,12 @@
                                                     <ul>
                                                         
                                             
-                                                    @if ($produks->stok_total_1 != NULL)
-                                                    <li> {{$produks->stok_total_1}} </li>                                                       
-                                                    @elseif($produks->stok_total_2 != NULL)
-                                                    <li> {{$produks->stok_total_2}} </li>  
-                                                    @elseif($produks->stok_total_3 != NULL)
-                                                    <li>   {{$produks->stok_total_3}}  </li> 
+                                                    @if ($produks->stok_bahan_1 != NULL)
+                                                    <li> {{$produks->stok_bahan_1}} </li>                                                       
+                                                    @elseif($produks->stok_bahan_2 != NULL)
+                                                    <li> {{$produks->stok_bahan_2}} </li>  
+                                                    @elseif($produks->stok_bahan_3 != NULL)
+                                                    <li>   {{$produks->stok_bahan_3}}  </li> 
                                                     @else
                                                         
                                                     @endif

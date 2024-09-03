@@ -192,15 +192,6 @@ class ProdukController extends Controller
     }
 
 
-
-
-
-    
-
-
-
-
-
     return redirect('/owner/stok_produk/'. $id)->with('update_data_produk','Data Produk Berhasil Diupdate');
 
   }
