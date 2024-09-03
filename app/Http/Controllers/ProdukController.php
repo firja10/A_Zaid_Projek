@@ -181,7 +181,7 @@ class ProdukController extends Controller
 
 
 
-   $bahan_1 = BahanBaku::where('kode_bahan_1', $order_bahan_1->kode_bahan_1)->update([
+   $bahan_1 = BahanBaku::where('kode_bahan', $order_bahan_1->kode_bahan_1)->update([
 
             'stok_bahan'=>$total_bahan_1
     
@@ -189,14 +189,14 @@ class ProdukController extends Controller
 
     
 
-    $bahan_2 = BahanBaku::where('kode_bahan_2', $order_bahan_2->kode_bahan_2)->update([
+    $bahan_2 = BahanBaku::where('kode_bahan', $order_bahan_2->kode_bahan_2)->update([
 
         'stok_bahan'=>$total_bahan_2
 
    ]);
 
 
-   $bahan_3 = BahanBaku::where('kode_bahan_3', $order_bahan_3->kode_bahan_3)->update([
+   $bahan_3 = BahanBaku::where('kode_bahan', $order_bahan_3->kode_bahan_3)->update([
 
     'stok_bahan'=>$total_bahan_3
 
