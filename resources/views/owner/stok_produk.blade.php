@@ -74,6 +74,11 @@
                                             
                                             $nama_produk = DB::table('produks')->where('nama_produk', $produks->nama_produk)->count();
                                             echo $nama_produk;
+
+
+
+
+
                                             ?></td>
 
 
@@ -82,11 +87,22 @@
                                                         
                                             
                                                     @if ($produks->stok_bahan_1 != NULL)
-                                                    <li> {{$produks->stok_bahan_1}} </li>                                                       
+                                                    <?php 
+                                                    $bahan_1 = DB::table('bahan_bakus')->where('kode_bahan', $produks->kode_bahan_1)->first();
+                                                    ?>
+                                                    <li><?php echo $bahan_1->nama_bahan?> : {{$produks->stok_bahan_1}} </li>                                                       
                                                     @elseif($produks->stok_bahan_2 != NULL)
-                                                    <li> {{$produks->stok_bahan_2}} </li>  
+                                                    <?php 
+                                                    $bahan_2 = DB::table('bahan_bakus')->where('kode_bahan', $produks->kode_bahan_2)->first();
+                                                    ?>
+                                                    <li><?php echo $bahan_2->nama_bahan?> : {{$produks->stok_bahan_2}} </li>  
                                                     @elseif($produks->stok_bahan_3 != NULL)
-                                                    <li>   {{$produks->stok_bahan_3}}  </li> 
+
+                                                    <?php 
+                                                    $bahan_3 = DB::table('bahan_bakus')->where('kode_bahan', $produks->kode_bahan_3)->first();
+                                                    ?>
+
+                                                    <li><?php echo $bahan_3->nama_bahan?> : {{$produks->stok_bahan_3}}  </li> 
                                                     @else
                                                         
                                                     @endif
