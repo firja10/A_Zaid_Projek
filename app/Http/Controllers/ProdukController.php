@@ -152,44 +152,53 @@ class ProdukController extends Controller
 
         $total_bahan_1 = intval($order_bahan_1->stok_bahan) - intval($order_produk_1->stok_bahan_1);
 
+        
+        $bahan_1 = BahanBaku::where('kode_bahan', $order_bahan_1->kode_bahan)->update([
+
+            'stok_bahan'=>$total_bahan_1
+
+        ]);
+
+
     }
 
 
     if ($order_produk_2->kode_bahan_2 != NULL) {
         # code...
         $total_bahan_2 = intval($order_bahan_2->stok_bahan) - intval($order_produk_2->stok_bahan_2);
+
+        $bahan_2 = BahanBaku::where('kode_bahan', $order_bahan_2->kode_bahan)->update([
+
+            'stok_bahan'=>$total_bahan_2
+    
+       ]);
+    
     }
 
 
     if ($order_produk_3->kode_bahan_3 != NULL) {
         # code...
         $total_bahan_3 = intval($order_bahan_3->stok_bahan) - intval($order_produk_3->stok_bahan_3);
+
+        
+        $bahan_3 = BahanBaku::where('kode_bahan', $order_bahan_3->kode_bahan)->update([
+
+            'stok_bahan'=>$total_bahan_3
+
+            ]);
+
+
+
     }
 
 
 
 
 
-   $bahan_1 = BahanBaku::where('kode_bahan', $order_bahan_1->kode_bahan)->update([
-
-            'stok_bahan'=>$total_bahan_1
-    
-       ]);
-
     
 
-    $bahan_2 = BahanBaku::where('kode_bahan', $order_bahan_2->kode_bahan)->update([
-
-        'stok_bahan'=>$total_bahan_2
-
-   ]);
 
 
-   $bahan_3 = BahanBaku::where('kode_bahan', $order_bahan_3->kode_bahan)->update([
-
-    'stok_bahan'=>$total_bahan_3
-
-    ]);
 
 
     return redirect('/owner/stok_produk/'. $id)->with('update_data_produk','Data Produk Berhasil Diupdate');
