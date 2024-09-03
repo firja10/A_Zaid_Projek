@@ -146,13 +146,6 @@ class ProdukController extends Controller
 
 
 
-    if ($order_produk_1->kode_bahan_1 != NULL) {
-        # code...
-
-        $total_bahan_1 = intval($order_bahan_1->stok_bahan) - intval($order_produk_1->stok_bahan_1);
-
-    }
-
 
     if ($order_produk_1->kode_bahan_1 != NULL) {
         # code...
@@ -164,17 +157,13 @@ class ProdukController extends Controller
 
     if ($order_produk_2->kode_bahan_2 != NULL) {
         # code...
-
         $total_bahan_2 = intval($order_bahan_2->stok_bahan) - intval($order_produk_2->stok_bahan_2);
-
     }
 
 
     if ($order_produk_3->kode_bahan_3 != NULL) {
         # code...
-
         $total_bahan_3 = intval($order_bahan_3->stok_bahan) - intval($order_produk_3->stok_bahan_3);
-
     }
 
 

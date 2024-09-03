@@ -66,7 +66,8 @@
                                  <div class="form-group">
                                     <label for="kode_bahan_1">Nama Bahan 1</label>
                                  
-                                    <select name="kode_bahan_1" id="kode_bahan_1">                                   
+                                    <select name="kode_bahan_1" id="kode_bahan_1">   
+                                        <option value="">-- Pilih Bahan --</option>                                              
                                         @foreach ($bahan_baku as $bahan_bakus)
                                             <option value="{{$bahan_bakus->kode_bahan}}">{{$bahan_bakus->nama_bahan}}</option>
                                         @endforeach
@@ -78,8 +79,8 @@
 
                                  
                                  <div class="form-group">
-                                    <label for="stok_total_1">Stok Total Bahan 1</label>
-                                    <input type="number" class="form-control" placeholder="{{$produk_id->stok_total_1}}" value="{{$produk_id->stok_total_1}}" name="stok_total_1" id="stok_total_1">
+                                    <label for="stok_bahan_1">Stok Bahan 1</label>
+                                    <input type="number" class="form-control" placeholder="{{$produk_id->stok_bahan_1}}" value="{{$produk_id->stok_bahan_1}}" name="stok_bahan_1" id="stok_bahan_1">
                                  </div>
 
                                  
@@ -93,7 +94,8 @@
                                  <div class="form-group">
                                     <label for="kode_bahan_2">Nama Bahan 2</label>
                                  
-                                    <select name="kode_bahan_2" id="kode_bahan_2">                                   
+                                    <select name="kode_bahan_2" id="kode_bahan_2">  
+                                            <option value="">-- Pilih Bahan --</option>                                 
                                         @foreach ($bahan_baku as $bahan_bakus)
                                             <option value="{{$bahan_bakus->kode_bahan}}">{{$bahan_bakus->nama_bahan}}</option>
                                         @endforeach
@@ -106,8 +108,8 @@
 
 
                                  <div class="form-group">
-                                    <label for="stok_total_2">Stok Total Bahan 2</label>
-                                    <input type="number" class="form-control" placeholder="{{$produk_id->stok_total_2}}" value="{{$produk_id->stok_total_2}}" name="stok_total_2" id="stok_total_2">
+                                    <label for="stok_bahan_2">Stok Bahan 2</label>
+                                    <input type="number" class="form-control" placeholder="{{$produk_id->stok_bahan_2}}" value="{{$produk_id->stok_bahan_2}}" name="stok_bahan_2" id="stok_bahan_2">
                                  </div>
 
 
@@ -122,7 +124,8 @@
                                  <div class="form-group">
                                     <label for="kode_bahan_3">Nama Bahan 3</label>
                                  
-                                    <select name="kode_bahan_3" id="kode_bahan_3">                                   
+                                    <select name="kode_bahan_3" id="kode_bahan_3">
+                                        <option value="">-- Pilih Bahan --</option>                                                 
                                         @foreach ($bahan_baku as $bahan_bakus)
                                             <option value="{{$bahan_bakus->kode_bahan}}">{{$bahan_bakus->nama_bahan}}</option>
                                         @endforeach
@@ -134,8 +137,8 @@
 
 
                                  <div class="form-group">
-                                    <label for="stok_total_3">Stok Total Bahan 3</label>
-                                    <input type="number" class="form-control" placeholder="{{$produk_id->stok_total_3}}" value="{{$produk_id->stok_total_3}}" name="stok_total_3" id="stok_total_3">
+                                    <label for="stok_bahan_3">Stok Bahan 3</label>
+                                    <input type="number" class="form-control" placeholder="{{$produk_id->stok_bahan_3}}" value="{{$produk_id->stok_bahan_3}}" name="stok_bahan_3" id="stok_bahan_3">
                                  </div>
 
                                  <div class="form-group">
