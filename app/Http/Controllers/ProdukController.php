@@ -136,13 +136,13 @@ class ProdukController extends Controller
 
 
 
-    $order_bahan_1 = DB::table('bahan_bakus')->where('kode_bahan_1', $request['kode_bahan_1'])->first();
+    $order_bahan_1 = DB::table('bahan_bakus')->where('kode_bahan', $request['kode_bahan_1'])->first();
 
     
-    $order_bahan_2 = DB::table('bahan_bakus')->where('kode_bahan_2', $request['kode_bahan_2'])->first();
+    $order_bahan_2 = DB::table('bahan_bakus')->where('kode_bahan', $request['kode_bahan_2'])->first();
 
     
-    $order_bahan_3 = DB::table('bahan_bakus')->where('kode_bahan_3', $request['kode_bahan_3'])->first();
+    $order_bahan_3 = DB::table('bahan_bakus')->where('kode_bahan', $request['kode_bahan_3'])->first();
 
 
 
