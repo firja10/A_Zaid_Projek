@@ -7,6 +7,7 @@ use App\Models\Produk;
 
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -93,6 +94,9 @@ class ProdukController extends Controller
         $filename=Produk::find($id)->image_produk;
     }
 
+
+
+
     $orders = Produk::where('id', $id)->update([
         'nama_produk' => $request['nama_produk'],
         'harga_produk'=> $request['harga_produk'],        
@@ -121,6 +125,83 @@ class ProdukController extends Controller
 
         // 'urgensitas'=>$request->urgensitas,
     ]);
+
+
+    $order_produk_1 = DB::table('produks')->where('kode_bahan_1', $request['kode_bahan_1'])->first();
+
+    $order_produk_2 = DB::table('produks')->where('kode_bahan_2', $request['kode_bahan_2'])->first();
+
+    $order_produk_3 = DB::table('produks')->where('kode_bahan_3', $request['kode_bahan_3'])->first();
+
+
+
+
+    $order_bahan_1 = DB::table('bahan_bakus')->where('kode_bahan_1', $request['kode_bahan_1'])->first();
+
+    
+    $order_bahan_2 = DB::table('bahan_bakus')->where('kode_bahan_2', $request['kode_bahan_2'])->first();
+
+    
+    $order_bahan_3 = DB::table('bahan_bakus')->where('kode_bahan_3', $request['kode_bahan_3'])->first();
+
+
+
+    if ($order_produk_1->kode_bahan_1 != NULL) {
+        # code...
+
+        $total_bahan_1 = intval($order_bahan_1->stok_bahan) - intval($order_produk_1->stok_bahan_1);
+
+    }
+
+
+    if ($order_produk_1->kode_bahan_1 != NULL) {
+        # code...
+
+        $total_bahan_1 = intval($order_bahan_1->stok_bahan) - intval($order_produk_1->stok_bahan_1);
+
+    }
+
+
+    if ($order_produk_2->kode_bahan_2 != NULL) {
+        # code...
+
+        $total_bahan_2 = intval($order_bahan_2->stok_bahan) - intval($order_produk_2->stok_bahan_2);
+
+    }
+
+
+    if ($order_produk_3->kode_bahan_3 != NULL) {
+        # code...
+
+        $total_bahan_3 = intval($order_bahan_3->stok_bahan) - intval($order_produk_3->stok_bahan_3);
+
+    }
+
+
+
+
+
+   $bahan_1 = BahanBaku::where('kode_bahan_1', $order_bahan_1->kode_bahan_1)->update([
+
+            'stok_bahan'=>$total_bahan_1
+    
+       ]);
+
+    
+
+    $bahan_2 = BahanBaku::where('kode_bahan_2', $order_bahan_2->kode_bahan_2)->update([
+
+        'stok_bahan'=>$total_bahan_2
+
+   ]);
+
+
+   $bahan_3 = BahanBaku::where('kode_bahan_3', $order_bahan_3->kode_bahan_3)->update([
+
+    'stok_bahan'=>$total_bahan_3
+
+    ]);
+
 
     return redirect('/owner/stok_produk/'. $id)->with('update_data_produk','Data Produk Berhasil Diupdate');
 
