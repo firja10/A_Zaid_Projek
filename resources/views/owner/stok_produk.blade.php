@@ -90,22 +90,25 @@
                                                     <?php 
                                                     $bahan_1 = DB::table('bahan_bakus')->where('kode_bahan', $produks->kode_bahan_1)->first();
                                                     ?>
-                                                    <li><?php echo $bahan_1->nama_bahan?> : {{$produks->stok_bahan_1}} </li>                                                       
-                                                    @elseif($produks->stok_bahan_2 != NULL)
+                                                    <li><?php echo $bahan_1->nama_bahan?> : {{$produks->stok_bahan_1}} </li> 
+                                                    @endif
+
+
+                                                    @if($produks->stok_bahan_2 != NULL)
                                                     <?php 
                                                     $bahan_2 = DB::table('bahan_bakus')->where('kode_bahan', $produks->kode_bahan_2)->first();
                                                     ?>
-                                                    <li><?php echo $bahan_2->nama_bahan?> : {{$produks->stok_bahan_2}} </li>  
-                                                    @elseif($produks->stok_bahan_3 != NULL)
+                                                    <li><?php echo $bahan_2->nama_bahan?> : {{$produks->stok_bahan_2}} </li> 
+                                                    @endif
 
+                                                    
+                                                    @if($produks->stok_bahan_3 != NULL)
                                                     <?php 
                                                     $bahan_3 = DB::table('bahan_bakus')->where('kode_bahan', $produks->kode_bahan_3)->first();
                                                     ?>
-
                                                     <li><?php echo $bahan_3->nama_bahan?> : {{$produks->stok_bahan_3}}  </li> 
-                                                    @else
-                                                        
                                                     @endif
+
                                                     </ul>
                                                 </td>
 

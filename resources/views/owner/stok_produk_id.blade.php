@@ -86,7 +86,7 @@
                                  
                                 <div class="form-group">
                                     <label for="satuan_1">Satuan Bahan 1</label>
-                                    <input type="text" name="satuan_bahan_1" id="satuan_bahan_3">
+                                    <input type="text" name="satuan_1" id="satuan_1">
                                 </div>
 
 
