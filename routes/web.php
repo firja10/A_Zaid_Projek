@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BahanBakuController;
 use App\Http\Controllers\BaristaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\TransactionController;
 use App\Models\Pemesanan;
 use App\Http\Controllers\PaymentCallbackController;
+use App\Models\BahanBaku;
 use App\Models\Konsumen;
 use Illuminate\Support\Facades\Auth;
 
@@ -81,6 +83,8 @@ Route::get('owner/pemesanan', [OwnerController::class, 'Pemesanan'])->name('Peme
 
 Route::get('/showQR', [ProdukController::class, 'showQR']);
 
+//Owner.Stok Bahan
+Route::get('owner/stok_bahan', [BahanBakuController::class, 'index'])->name('index')->middleware('is_owner');
 
 
 Route::resource('orders', OrderController::class)->only(['index', 'show']);

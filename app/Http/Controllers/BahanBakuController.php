@@ -12,10 +12,8 @@ class BahanBakuController extends Controller
      */
     public function index()
     {
-        //
-
-        
-
+        $bahan_baku = BahanBaku::all();
+        return view('owner.stok_bahan', compact('bahan_baku'));
     }
 
     /**
