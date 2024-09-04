@@ -60,6 +60,13 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
+                <a class="nav-link" href="{{url('/owner/stok_bahan')}}">
+                    <i class="fas fa-fw fa-clipboard-list"></i>
+                    <span>Stok Bahan</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
                 <a class="nav-link" href="{{url('/owner/pemesanan')}}">
                     <i class="fas fa-fw fa-clipboard-list"></i>
                     <span>Data Penjualan</span></a>
